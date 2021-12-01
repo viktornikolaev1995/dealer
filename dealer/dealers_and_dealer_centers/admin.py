@@ -13,16 +13,16 @@ admin.site.unregister(User)
 # Register out own model admin, based on the default UserAdmin
 @admin.register(User)
 class CustomerUserAdmin(UserAdmin):
-    def check_user(self, request):
+    def is_not_superuser(self, request):
         if not request.user.is_superuser:
             return False
         return True
     def has_delete_permission(self, request, obj=None):
-        return self.check_user(request)
+        return self.is_not_superuser(request)
     def has_add_permission(self, request):
-        return self.check_user(request)
+        return self.is_not_superuser(request)
     def has_change_permission(self, request, obj=None):
-        return self.check_user(request)
+        return self.is_not_superuser(request)
     def has_view_permission(self, request, obj=None):
         return True
 
