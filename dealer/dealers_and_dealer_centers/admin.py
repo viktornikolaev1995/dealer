@@ -2,11 +2,9 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User, Permission
-
 from .models import Dealer, DealerCenter, Vehicle
 from django.forms import TextInput, Textarea
 from django.db import models
-
 
 
 # Unregister the provided model admin
@@ -28,6 +26,13 @@ class CustomerUserAdmin(UserAdmin):
     def has_view_permission(self, request, obj=None):
         return True
 
+    def save_model(self, request, obj, form, change):
+        if request.user.is_superuser:
+            obj.is_staff = True
+            obj.save()
+            # Добавление user_permissions c id=28 (codename=view_dealercenter), id=36 (codename=view_dealer) к созданным Users
+            obj.user_permissions.add(28, 36)
+            obj.save()
 
 class VehicleInline(admin.TabularInline):
     model = Vehicle
