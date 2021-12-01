@@ -10,7 +10,7 @@ class Dealer(models.Model):
 	slug = models.SlugField(unique=True, verbose_name='Слаг')
 	image = models.ImageField(upload_to='dealer/', verbose_name='Изображение', blank=True, null=True)
 	car_saloons = models.ManyToManyField('DealerCenter', verbose_name='Дилерские центры', related_name='dealer_centers')
-	admin = models.OneToOneField(User, verbose_name="Пользователь", on_delete=models.PROTECT)
+	user = models.OneToOneField(User, verbose_name="Пользователь", on_delete=models.PROTECT)
 
 	def __str__(self):
 		return self.name
@@ -28,7 +28,7 @@ class DealerCenter(models.Model):
 	vehicle_repair = models.BooleanField(default=False, verbose_name='Ремонт транспортных средств')
 	composition_of_spare_parts = models.BooleanField(default=False, verbose_name='Склад запасных частей')
 	car_warehouse = models.BooleanField(default=False, verbose_name='Склад автомобилей')
-	admin = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.PROTECT)
+	user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.PROTECT)
 
 	def __str__(self):
 		return self.name
