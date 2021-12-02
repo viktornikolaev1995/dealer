@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'dealer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dealer_db',
+        'NAME': 'dealer2_db',
         'USER': 'dealer_user',
         'PASSWORD': 'user!,1',
         'HOST': '127.0.0.1',

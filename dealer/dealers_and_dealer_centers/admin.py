@@ -31,12 +31,14 @@ class CustomerUserAdmin(UserAdmin):
             obj.is_staff = True
             obj.save()
             # Добавление user_permissions c id=28 (codename=view_dealercenter), id=36 (codename=view_dealer) к созданным Users
-            obj.user_permissions.add(28, 36)
+            permission1 = Permission.objects.get(name='Can view dealer')
+            permission2 = Permission.objects.get(name='Can view dealer center')
+            obj.user_permissions.add(permission1, permission2)
             obj.save()
 
 class VehicleInline(admin.TabularInline):
     model = Vehicle
-
+    prepopulated_fields = {'slug': ('name',)}
 
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size': '20'})},
@@ -47,7 +49,7 @@ class VehicleInline(admin.TabularInline):
 
 @admin.register(Dealer)
 class DealerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', )
+    list_display = ('name', 'slug', 'image')
     prepopulated_fields = {'slug': ('name',)}
     inlines = [VehicleInline]
 
@@ -81,10 +83,10 @@ class DealerCenterAdmin(admin.ModelAdmin):
 
 @admin.register(Vehicle)
 class VehicleAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'vin', 'brand', 'price', 'image', 'dealer')
+    list_display = ('name', 'slug', 'vin', 'brand', 'price', 'image', 'dealer', 'dealer_center')
     fields = (('name', 'slug', 'vin',),
               ('description', 'image'), (),
-              ('car_model', 'brand', 'price', 'color'), ('dealer', 'add_to_dealer_center'))
+              ('brand', 'car_model', 'price', 'color'), ('dealer', 'dealer_center', 'add_to_dealer_center'))
     prepopulated_fields = {'slug': ('name',)}
 
     formfield_overrides = {

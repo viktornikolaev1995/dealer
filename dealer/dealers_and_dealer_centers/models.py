@@ -9,7 +9,10 @@ class Dealer(models.Model):
 	description = models.TextField(verbose_name='Описание', blank=True)
 	slug = models.SlugField(unique=True, verbose_name='Слаг')
 	image = models.ImageField(upload_to='dealer/', verbose_name='Изображение', blank=True, null=True)
-	car_saloons = models.ManyToManyField('DealerCenter', verbose_name='Дилерские центры', related_name='dealer_centers')
+	car_saloons = models.ManyToManyField(
+		'DealerCenter',
+		verbose_name='Дилерские центры',
+		related_name='dealer_centers')
 	user = models.OneToOneField(User, verbose_name="Пользователь", on_delete=models.PROTECT)
 
 	def __str__(self):
@@ -47,9 +50,26 @@ class Vehicle(models.Model):
 	color = models.CharField(max_length=100, verbose_name='Цвет')
 	add_to_dealer = models.DateTimeField(auto_now_add=True, verbose_name='Дата первичного поступления к дилеру')
 	add_to_dealer_center = models.DateTimeField(verbose_name='Дата поступления в дилерский центр', blank=True, null=True)
-	dealer = models.ForeignKey(Dealer, verbose_name='Наименование дилера', on_delete=models.CASCADE, related_name='vehicle_dealer', blank=True, null=True)
+	dealer = models.ForeignKey(
+		Dealer,
+		verbose_name='Наименование дилера',
+		on_delete=models.CASCADE,
+		related_name='vehicle_dealer',
+		blank=True,
+		null=True)
+	dealer_center = models.ForeignKey(
+		DealerCenter,
+		verbose_name='Наименование дилерского центра',
+		on_delete=models.CASCADE,
+		related_name='vehicle_dealer_center',
+		blank=True,
+		null=True)
+
+	class Meta:
+		unique_together = [['dealer', 'vin']]
 
 	def __str__(self):
 		return self.name
+
 
 
