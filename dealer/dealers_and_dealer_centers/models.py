@@ -8,12 +8,16 @@ class Dealer(models.Model):
 	name = models.CharField(max_length=255, verbose_name='Наименование')
 	description = models.TextField(verbose_name='Описание', blank=True)
 	slug = models.SlugField(unique=True, verbose_name='Слаг')
-	image = models.ImageField(upload_to='dealer/', verbose_name='Изображение', blank=True, null=True)
 	car_saloons = models.ManyToManyField(
 		'DealerCenter',
 		verbose_name='Дилерские центры',
 		related_name='dealer_centers')
-	user = models.OneToOneField(User, verbose_name="Пользователь", on_delete=models.PROTECT)
+	image = models.ImageField(upload_to='dealer/', verbose_name='Изображение', blank=True, null=True)
+	user = models.OneToOneField(User, verbose_name="Пользователь", on_delete=models.SET_NULL, blank=True, null=True)
+
+	class Meta:
+		verbose_name = 'Дилер'
+		verbose_name_plural = 'Дилеры'
 
 	def __str__(self):
 		return self.name
@@ -24,14 +28,18 @@ class DealerCenter(models.Model):
 	name = models.CharField(max_length=255, verbose_name='Наименование')
 	description = models.TextField(verbose_name='Описание', blank=True)
 	slug = models.SlugField(unique=True, verbose_name='Слаг')
-	address = models.CharField(max_length=255, verbose_name='Адрес')
-	telephone_number = models.CharField(max_length=50, verbose_name='Официальный номер')
+	address = models.CharField(max_length=255, verbose_name='Адрес', blank=True)
+	telephone_number = models.CharField(max_length=50, verbose_name='Официальный номер', blank=True)
 	image = models.ImageField(upload_to='dealer_centers/', verbose_name='Изображение', blank=True, null=True)
 	vehicle_sale = models.BooleanField(default=False, verbose_name='Продажа транспортных средств')
 	vehicle_repair = models.BooleanField(default=False, verbose_name='Ремонт транспортных средств')
 	composition_of_spare_parts = models.BooleanField(default=False, verbose_name='Склад запасных частей')
 	car_warehouse = models.BooleanField(default=False, verbose_name='Склад автомобилей')
-	user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.PROTECT)
+	user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.SET_NULL, blank=True, null=True)
+
+	class Meta:
+		verbose_name = 'Дилерский центр'
+		verbose_name_plural = 'Дилерские центры'
 
 	def __str__(self):
 		return self.name
@@ -44,28 +52,38 @@ class Vehicle(models.Model):
 	slug = models.SlugField(unique=True, verbose_name='Слаг')
 	vin = models.CharField(max_length=100, unique=True, verbose_name='VIN код')
 	brand = models.CharField(max_length=255, verbose_name='Марка')
-	price = models.IntegerField(verbose_name='Стоимость')
-	image = models.ImageField(upload_to='vehicle/%Y/%m/%d/', verbose_name='Изображение')
 	car_model = models.CharField(max_length=255, verbose_name='Модель')
 	color = models.CharField(max_length=100, verbose_name='Цвет')
+	engine = models.CharField(max_length=100, verbose_name='Двигатель')
+	transmission = models.CharField(max_length=100, verbose_name='Трансмиссия')
+	year_of_release = models.PositiveSmallIntegerField(verbose_name="Год выпуска")
+	vehicle_with_mileage = models.BooleanField(default=False, verbose_name='С пробегом')
+	vehicle_mileage = models.PositiveSmallIntegerField(verbose_name="Пробег", blank=True, null=True)
+	type_of_vehicle_passport = models.CharField(max_length=100, verbose_name='Тип ПТС', blank=True)
+	owners = models.PositiveSmallIntegerField(verbose_name="Количество владельцев", blank=True, null=True)
+	image = models.ImageField(upload_to='vehicle/%Y/%m/%d/', verbose_name='Изображение', blank=True, null=True)
+	price = models.PositiveIntegerField(verbose_name='Стоимость')
 	add_to_dealer = models.DateTimeField(auto_now_add=True, verbose_name='Дата первичного поступления к дилеру')
 	add_to_dealer_center = models.DateTimeField(verbose_name='Дата поступления в дилерский центр', blank=True, null=True)
 	dealer = models.ForeignKey(
 		Dealer,
 		verbose_name='Наименование дилера',
-		on_delete=models.CASCADE,
+		on_delete=models.PROTECT,
 		related_name='vehicle_dealer',
 		blank=True,
 		null=True)
 	dealer_center = models.ForeignKey(
 		DealerCenter,
 		verbose_name='Наименование дилерского центра',
-		on_delete=models.CASCADE,
+		on_delete=models.PROTECT,
 		related_name='vehicle_dealer_center',
 		blank=True,
 		null=True)
+	archive = models.BooleanField(default=False, verbose_name='Архив')
 
 	class Meta:
+		verbose_name = 'Транспортное средство'
+		verbose_name_plural = 'Транспортные средства'
 		unique_together = [['dealer', 'vin']]
 
 	def __str__(self):

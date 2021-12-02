@@ -6,5 +6,11 @@
 </head>
 <body>
 <p>Дилеры и дилерские центры</p>
+{% for vehicle in vehicles %}
+    <p>{{ vehicle.name }}</p>
+    <p>{{ vehicle.vin }}</p>
+    <p>{{ vehicle.engine }}</p>
+    <img src="{{vehicle.image.url}}" width="500" height="500">
+{% endfor %}
 </body>
 </html>

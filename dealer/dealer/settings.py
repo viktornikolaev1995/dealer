@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'dealers_and_dealer_centers',
+    'dealers_and_dealer_centers.apps.DealersAndDealerCentersConfig',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'dealer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dealer2_db',
+        'NAME': 'dealer3_db',
         'USER': 'dealer_user',
         'PASSWORD': 'user!,1',
         'HOST': '127.0.0.1',
@@ -129,8 +129,9 @@ STATICFILES_DIRS = [
 
 ]
 
-MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

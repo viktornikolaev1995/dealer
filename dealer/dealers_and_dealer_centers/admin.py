@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User, Permission
+from django.template.defaultfilters import default_if_none
+from django.utils.safestring import mark_safe
+
 from .models import Dealer, DealerCenter, Vehicle
 from django.forms import TextInput, Textarea
 from django.db import models
@@ -30,28 +33,41 @@ class CustomerUserAdmin(UserAdmin):
         if request.user.is_superuser:
             obj.is_staff = True
             obj.save()
-            # Добавление user_permissions c id=28 (codename=view_dealercenter), id=36 (codename=view_dealer) к созданным Users
-            permission1 = Permission.objects.get(name='Can view dealer')
-            permission2 = Permission.objects.get(name='Can view dealer center')
-            obj.user_permissions.add(permission1, permission2)
-            obj.save()
+            # Добавление user_permissions к созданным Users
+            try:
+                permission1 = Permission.objects.get(name='Can view Дилер')
+                permission2 = Permission.objects.get(name='Can view Дилерский центр')
+                obj.user_permissions.add(permission1, permission2)
+                obj.save()
+            except Exception:
+                pass
 
 class VehicleInline(admin.TabularInline):
     model = Vehicle
+    extra = 1
+    readonly_fields = ('get_image',)
     prepopulated_fields = {'slug': ('name',)}
 
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size': '20'})},
         models.TextField: {'widget': Textarea(attrs={'rows': 4, 'cols': 40})}
-
     }
+
+    def get_image(self, obj):
+        if obj.image and hasattr(obj.image, 'url'):
+            return mark_safe(f'<img src={obj.image.url} width="100" height="85"')
+        else:
+            return mark_safe(f'<img src="#"')
+
+    get_image.short_description = "Изображение"
 
 
 @admin.register(Dealer)
 class DealerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'image')
+    list_display = ('name', 'slug', 'get_image')
     prepopulated_fields = {'slug': ('name',)}
     inlines = [VehicleInline]
+    readonly_fields = ('get_image',)
 
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size': '20'})},
@@ -64,11 +80,19 @@ class DealerAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(user=request.user).only('name', 'slug', 'image', 'car_saloons')
 
+    def get_image(self, obj):
+        if obj.image and hasattr(obj.image, 'url'):
+            return mark_safe(f'<img src={obj.image.url} width="100" height="85"')
+        else:
+            return mark_safe(f'<img src="#"')
+
+    get_image.short_description = "Изображение"
+
 @admin.register(DealerCenter)
 class DealerCenterAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'address', 'telephone_number', 'image')
-                    # ('vehicle_sale', 'vehicle_repair', 'composition_of_spare_parts', 'car_warehouse'))
+    list_display = ('name', 'slug', 'address', 'telephone_number', 'get_image')
     prepopulated_fields = {'slug': ('name',)}
+    readonly_fields = ('get_image',)
 
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size': '20'})},
@@ -81,16 +105,38 @@ class DealerCenterAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(user=request.user).only('name', 'slug')
 
+    def get_image(self, obj):
+        if obj.image and hasattr(obj.image, 'url'):
+            return mark_safe(f'<img src={obj.image.url} width="100" height="85"')
+        else:
+            return mark_safe(f'<img src="#"')
+
+    get_image.short_description = "Изображение"
+
 @admin.register(Vehicle)
 class VehicleAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'vin', 'brand', 'price', 'image', 'dealer', 'dealer_center')
-    fields = (('name', 'slug', 'vin',),
-              ('description', 'image'), (),
-              ('brand', 'car_model', 'price', 'color'), ('dealer', 'dealer_center', 'add_to_dealer_center'))
+    list_display = ('name', 'slug', 'brand', 'car_model', 'price', 'vin', 'get_image', 'dealer', 'dealer_center')
+    fields = (
+        ('name', 'slug', 'vin',),
+        ('description', 'image', 'get_image'),
+        ('brand', 'car_model', 'price', 'color'),
+        ('engine', 'transmission', 'year_of_release', 'vehicle_with_mileage'),
+        ('vehicle_mileage', 'type_of_vehicle_passport', 'owners'),
+        ('dealer', 'dealer_center'),
+        ('add_to_dealer_center', 'archive')
+              )
     prepopulated_fields = {'slug': ('name',)}
+    readonly_fields = ('get_image',)
 
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size': '20'})},
         models.TextField: {'widget': Textarea(attrs={'rows': 4, 'cols': 40})}
-
     }
+
+    def get_image(self, obj):
+        if obj.image and hasattr(obj.image, 'url'):
+            return mark_safe(f'<img src={obj.image.url} width="100" height="85"')
+        else:
+            return mark_safe(f'<img src="#"')
+
+    get_image.short_description = "Изображение"
