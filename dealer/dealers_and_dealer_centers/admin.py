@@ -125,7 +125,7 @@ class VehicleAdmin(admin.ModelAdmin):
         ('dealer', 'dealer_center'),
         ('add_to_dealer_center', 'archive')
               )
-    prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {'slug': ('name', 'color', 'year_of_release', 'vehicle_mileage')}
     readonly_fields = ('get_image',)
 
     formfield_overrides = {

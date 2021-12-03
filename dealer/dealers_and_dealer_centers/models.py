@@ -58,7 +58,7 @@ class Vehicle(models.Model):
 	transmission = models.CharField(max_length=100, verbose_name='Трансмиссия')
 	year_of_release = models.PositiveSmallIntegerField(verbose_name="Год выпуска")
 	vehicle_with_mileage = models.BooleanField(default=False, verbose_name='С пробегом')
-	vehicle_mileage = models.PositiveSmallIntegerField(verbose_name="Пробег", blank=True, null=True)
+	vehicle_mileage = models.PositiveIntegerField(verbose_name="Пробег", blank=True, null=True)
 	type_of_vehicle_passport = models.CharField(max_length=100, verbose_name='Тип ПТС', blank=True)
 	owners = models.PositiveSmallIntegerField(verbose_name="Количество владельцев", blank=True, null=True)
 	image = models.ImageField(upload_to='vehicle/%Y/%m/%d/', verbose_name='Изображение', blank=True, null=True)
