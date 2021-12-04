@@ -11,9 +11,15 @@ class Dealer(models.Model):
 	car_saloons = models.ManyToManyField(
 		'DealerCenter',
 		verbose_name='Дилерские центры',
-		related_name='dealer_centers')
+		related_name='dealer_centers'
+	)
 	image = models.ImageField(upload_to='dealer/', verbose_name='Изображение', blank=True, null=True)
-	user = models.OneToOneField(User, verbose_name="Пользователь", on_delete=models.SET_NULL, blank=True, null=True)
+	user = models.OneToOneField(
+		User,
+		verbose_name="Пользователь",
+		on_delete=models.SET_NULL,
+		blank=True, null=True
+	)
 
 	class Meta:
 		verbose_name = 'Дилер'
@@ -21,6 +27,7 @@ class Dealer(models.Model):
 
 	def __str__(self):
 		return self.name
+
 
 class DealerCenter(models.Model):
 	"""Дилерский центр"""
@@ -35,7 +42,13 @@ class DealerCenter(models.Model):
 	vehicle_repair = models.BooleanField(default=False, verbose_name='Ремонт транспортных средств')
 	composition_of_spare_parts = models.BooleanField(default=False, verbose_name='Склад запасных частей')
 	car_warehouse = models.BooleanField(default=False, verbose_name='Склад автомобилей')
-	user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.SET_NULL, blank=True, null=True)
+	user = models.ForeignKey(
+		User,
+		verbose_name="Пользователь",
+		on_delete=models.SET_NULL,
+		blank=True,
+		null=True
+	)
 
 	class Meta:
 		verbose_name = 'Дилерский центр'
@@ -43,6 +56,7 @@ class DealerCenter(models.Model):
 
 	def __str__(self):
 		return self.name
+
 
 class Vehicle(models.Model):
 	"""Транспортное средство"""
@@ -71,14 +85,16 @@ class Vehicle(models.Model):
 		on_delete=models.PROTECT,
 		related_name='vehicle_dealer',
 		blank=True,
-		null=True)
+		null=True
+	)
 	dealer_center = models.ForeignKey(
 		DealerCenter,
 		verbose_name='Наименование дилерского центра',
 		on_delete=models.PROTECT,
 		related_name='vehicle_dealer_center',
 		blank=True,
-		null=True)
+		null=True
+	)
 	archive = models.BooleanField(default=False, verbose_name='Архив')
 
 	class Meta:
@@ -90,4 +106,22 @@ class Vehicle(models.Model):
 		return self.name
 
 
+class VehiclePhotos(models.Model):
+	"""Фотографии транспортного средства"""
+	title = models.CharField(max_length=255, verbose_name='Заголовок')
+	image = models.ImageField(upload_to="vehicle_photos/%Y/%m/%d/", verbose_name="Фотография")
+	vehicle = models.ForeignKey(
+		Vehicle,
+		on_delete=models.CASCADE,
+		verbose_name="Транспортное средство",
+		blank=True,
+		null=True
+	)
+
+	def __str__(self):
+		return self.title
+
+	class Meta:
+		verbose_name = 'Фотография транспортного средства'
+		verbose_name_plural = 'Фотографии транспортного средства'
 
