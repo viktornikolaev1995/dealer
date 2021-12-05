@@ -64,14 +64,14 @@ class VehicleInline(admin.TabularInline):
 
 @admin.register(Dealer)
 class DealerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'get_image')
+    list_display = ('name', 'description', 'get_image')
     prepopulated_fields = {'slug': ('name',)}
     inlines = [VehicleInline]
     readonly_fields = ('get_image',)
 
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size': '20'})},
-        models.TextField: {'widget': Textarea(attrs={'rows': 4, 'cols': 40})}
+        models.TextField: {'widget': Textarea(attrs={'rows': 6, 'cols': 100})}
     }
 
     def get_queryset(self, request):

@@ -4,7 +4,7 @@ from .models import Dealer, DealerCenter, Vehicle
 
 class DealerList(ListView):
     model = Dealer
-    template_name = 'dealers_list.html'
+    template_name = 'dealers_and_dealer_centers/dealers_list.html'
     context_object_name = 'dealers'
 
     def get_queryset(self):
@@ -17,7 +17,7 @@ class DealerList(ListView):
 
 class VehicleList(ListView):
     model = Vehicle
-    template_name = 'index.html'
+    template_name = 'dealers_and_dealer_centers/index.html'
     context_object_name = 'vehicles'
 
     def get_queryset(self):

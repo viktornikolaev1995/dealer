@@ -1,10 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
+	<link href="https://fonts.googleapis.com/css?family=Lora|Ubuntu:400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'dealers_and_dealer_centers/css/main.css' %}">
 </head>
 <body>
+{% include 'dealers_and_dealer_centers/navbar.html' %}
 <h1>Дилеры и дилерские центры</h1>
 {% for dealer in dealers %}
     <h2>{{ dealer.name }}</h2>
