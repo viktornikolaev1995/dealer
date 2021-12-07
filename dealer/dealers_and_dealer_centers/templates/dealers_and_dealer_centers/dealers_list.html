@@ -10,20 +10,24 @@
 <body>
 {% include 'dealers_and_dealer_centers/navbar.html' %}
 
-
+{% block content %}
 <div class="container container-flex">
 
     <aside>
-        {% for dealer in dealers %}
-        <p>{{dealer.name}}</p>
-        {% endfor %}
+<!--        {% for dealer in dealers %}-->
+<!--        <p>{{dealer.name}}</p>-->
+<!--        {% endfor %}-->
     </aside>
     <main>
         {% for dealer in dealers %}
         <article class="article-recent">
             <div class="article-recent-main">
                 <h2>{{ dealer.name }}</h2>
-                <p>{{ dealer.description }}</p>
+                <p>Дилерские центры:
+                    {% for dealer_center in dealer.car_saloons.all %}
+                    {{dealer_center.name}}
+                    {% endfor %}
+                </p>
             </div>
             <div class="article-recent-secondary">
                 <img src="{{dealer.image.url}}" class="article-image">
@@ -33,6 +37,7 @@
     </main>
     <aside></aside>
 </div>
+{% endblock %}
 {% include 'dealers_and_dealer_centers/footer.html' %}
 </body>
 </html>

@@ -1,0 +1,30 @@
+{% extends "dealers_and_dealer_centers/dealers_list.html" %}
+{% block content %}
+<div class="container container-flex">
+
+    <aside>
+<!--        {% for dealer in dealers %}-->
+<!--        <p>{{dealer.name}}</p>-->
+<!--        {% endfor %}-->
+    </aside>
+    <main>
+        {% for dealer_center in dealer_centers %}
+        <article class="article-recent">
+            <div class="article-recent-main">
+                <h2>{{ dealer_center.name }}</h2>
+                <p>{{ dealer_center.address }}</p>
+                <p>{{ dealer_center.telephone_number }}</p>
+            </div>
+            <div class="article-recent-secondary">
+                {% if dealer_center.image %}
+                    <img src="{{dealer_center.image.url}}" class="article-image">
+                {% else %}
+                    <img src="#" class="article-image">
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </main>
+    <aside></aside>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "dealers_and_dealer_centers/dealers_list.html" %}
+{% block content %}
+<div class="container container-flex">
+    <aside>
+    </aside>
+    <main>
+        {% for vehicle in vehicles %}
+        <article class="article-recent">
+            <div class="article-recent-main">
+                <h2>{{ vehicle.name }}</h2>
+                <p>{{ vehicle.vin }}</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pulvinar erat sed euismod efficitur. Curabitur sodales ex dui, sit amet convallis sem finibus a. Curabitur pellentesque sodales nibh a efficitur. Duis eu lacus massa. Ut laoreet, purus et pretium euismod, arcu tortor efficitur diam, nec placerat massa sem sit amet ex. Curabitur quis iaculis ante. Curabitur tortor massa, venenatis eu ligula id, iaculis auctor risus. Curabitur placerat pellentesque commodo. Fusce non lorem vel enim accumsan pulvinar. Nulla eu posuere mi, at mattis augue. Suspendisse venenatis nec tellus sed eleifend. Nam congue purus in ante consectetur aliquam. In at leo auctor, ullamcorper tortor eu, blandit nunc.
+
+                    In tincidunt lobortis volutpat. Aliquam et nibh velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque sed vehicula nibh. Proin sodales scelerisque nisl in luctus. Nunc lobortis rhoncus orci, eget gravida orci mattis nec. Phasellus semper lobortis sem vitae gravida. Aenean dignissim quam eget sollicitudin rutrum. Donec maximus</p>
+                <p>{{ vehicle.engine }}</p>
+                <p>{{ vehicle.dealer }}</p>
+                <p>{{ vehicle.dealer_center }}</p>
+            </div>
+            <div class="article-recent-secondary">
+                <img src="{{vehicle.image.url}}" class="article-image" width="500" height="500">
+            </div>
+        </article>
+        {% endfor %}
+    </main>
+    <aside></aside>
+</div>
+{% endblock %}

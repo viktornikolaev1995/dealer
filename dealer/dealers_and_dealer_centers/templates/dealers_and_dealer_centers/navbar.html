@@ -6,10 +6,10 @@
 		</div>
 		<nav>
 			<ul>
-				<li><a class="current-page" href="#">Главная</a></li>
-				<li><a href="#">Дилеры</a></li>
-				<li><a href="#">Модельный ряд</a></li>
-				<li><a href="#">Авто с пробегом</a></li>
+				<li><a class="current-page" href="{% url 'dealers' %}">Главная</a></li>
+				<li><a href="{% url 'dealer_centers' %}">Дилерские центры</a></li>
+				<li><a href="{% url 'new_vehicles' %}">Модельный ряд</a></li>
+				<li><a href="{% url 'vehicles_with_mileage' %}">Авто с пробегом</a></li>
 			</ul>
 		</nav>
 	</div>
