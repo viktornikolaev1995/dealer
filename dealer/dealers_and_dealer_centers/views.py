@@ -17,7 +17,7 @@ class DealerList(ListView):
         return context
 
 
-class DealerCenterList(DealerList):
+class DealerCenterList(ListView):
     model = DealerCenter
     template_name = 'dealers_and_dealer_centers/dealer_centers_list.html'
     context_object_name = 'dealer_centers'
@@ -45,13 +45,25 @@ class VehicleNewList(ListView):
         return context
 
 
+class VehicleNewListAtDealerCenter(VehicleNewList):
+
+    def get_queryset(self, **kwargs):
+        return Vehicle.objects.filter(archive=False, vehicle_with_mileage=False, dealer_center__slug=self.kwargs['slug'])
+
+
+
 class VehicleWithMileageList(VehicleNewList):
 
     def get_queryset(self):
-        return Vehicle.objects.filter(archive=False, vehicle_with_mileage=True)
+        return Vehicle.objects.filter(archive=False, vehicle_with_mileage=True, )
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Автомобили с пробегом'
         return context
 
+
+class VehicleWithMileageAtDealerCenterList(VehicleWithMileageList):
+
+    def get_queryset(self, **kwargs):
+        return Vehicle.objects.filter(archive=False, vehicle_with_mileage=True, dealer_center__slug=self.kwargs['slug'])

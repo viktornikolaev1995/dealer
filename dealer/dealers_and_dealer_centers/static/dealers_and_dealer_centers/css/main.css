@@ -65,15 +65,18 @@ strong {
 	font-size: 1.5rem;
 }
 
-.article-read-more,
+.article-read-more {
+	font-size: 1rem;
+}
+
 .article-info {
 	font-size: .875rem;
 }
 
 .article-read-more {
-	color: #1792d2;
+    color: black;
 	text-decoration: none;
-	font-weight: 700;
+	font-weight: 400;
 }
 
 .article-read-more:hover,
@@ -99,9 +102,9 @@ strong {
 
 /*Layout*/
 
-.page {
+/*.page {
     overflow: hidden;
-}
+}*/
 .container {
 	width: 95%;
 	/*max-width: 900px;*/
@@ -351,16 +354,4 @@ nav a:focus {
 
 }
 
-/*sidebar*/
-
-/*.sidebar-widget,
-.widget-image {
-	margin-bottom: 1em;
-}*/
-
-.sidebar-widget {
-	border: 20px solid #efefef;
-	margin-bottom: 1em;
-	padding: 0.25em;
-}
 

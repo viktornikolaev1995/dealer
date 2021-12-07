@@ -25,7 +25,7 @@
                 <h2>{{ dealer.name }}</h2>
                 <p>Дилерские центры:
                     {% for dealer_center in dealer.car_saloons.all %}
-                    {{dealer_center.name}}
+                        {{dealer_center.name}}
                     {% endfor %}
                 </p>
             </div>
