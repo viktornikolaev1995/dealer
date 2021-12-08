@@ -7,9 +7,10 @@
         {% for vehicle in vehicles %}
         <article class="article-recent">
             <div class="article-recent-main">
+                <h4>{{ vehicle.name }}</h4>
                 <p>Марка: {{ vehicle.brand }}</p>
                 <p>Модель: {{ vehicle.car_model }}</p>
-                <p>VIN: {{ vehicle.vin }}</p>
+                <p>VIN: {{ vehicle.vin|slice:':8'|add:'*********' }}</p>
                 <p>Двигатель: {{ vehicle.engine }}</p>
                 <p>Год: {{ vehicle.year_of_release }}</p>
                 <p>Дилерский центр: {{ vehicle.dealer_center }}</p>

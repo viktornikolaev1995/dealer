@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 from django.views.generic import ListView
 from .models import Dealer, DealerCenter, Vehicle
@@ -37,7 +38,10 @@ class VehicleNewList(ListView):
     context_object_name = 'vehicles'
 
     def get_queryset(self):
-        return Vehicle.objects.filter(archive=False, vehicle_with_mileage=False)
+        obj = Vehicle.objects.filter(archive=False, vehicle_with_mileage=False)
+        if obj.exists():
+            return obj
+        raise Http404
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -48,14 +52,19 @@ class VehicleNewList(ListView):
 class VehicleNewListAtDealerCenter(VehicleNewList):
 
     def get_queryset(self, **kwargs):
-        return Vehicle.objects.filter(archive=False, vehicle_with_mileage=False, dealer_center__slug=self.kwargs['slug'])
-
+        obj = Vehicle.objects.filter(archive=False, vehicle_with_mileage=False, dealer_center__slug=self.kwargs['slug'])
+        if obj.exists():
+            return obj
+        raise Http404
 
 
 class VehicleWithMileageList(VehicleNewList):
 
     def get_queryset(self):
-        return Vehicle.objects.filter(archive=False, vehicle_with_mileage=True, )
+        obj = Vehicle.objects.filter(archive=False, vehicle_with_mileage=True)
+        if obj.exists():
+            return obj
+        raise Http404
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -66,4 +75,7 @@ class VehicleWithMileageList(VehicleNewList):
 class VehicleWithMileageAtDealerCenterList(VehicleWithMileageList):
 
     def get_queryset(self, **kwargs):
-        return Vehicle.objects.filter(archive=False, vehicle_with_mileage=True, dealer_center__slug=self.kwargs['slug'])
+        obj = Vehicle.objects.filter(archive=False, vehicle_with_mileage=True, dealer_center__slug=self.kwargs['slug'])
+        if obj.exists():
+            return obj
+        raise Http404

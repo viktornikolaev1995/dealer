@@ -25,7 +25,8 @@ img {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
 	font-family: 'Lora', serif;
 	font-weight: 400;
 	color: #143774;
@@ -223,9 +224,10 @@ footer {
 }
 
 
-@media (min-width: 737px) {
+@media (min-width: 1000px) {
 	.container-flex {
 		flex-direction: row;
+		justify-content: center;
 	}
 
 	main {
@@ -239,6 +241,7 @@ footer {
 		/*margin-left: 1em;*/
 	}
 }
+
 
 /*navigation*/
 
@@ -276,7 +279,7 @@ nav a:focus {
 }
 
 
-@media (max-width: 675px) {
+@media (max-width: 1000px) {
 	nav ul {
 		flex-direction: column;
 	}
@@ -309,7 +312,7 @@ nav a:focus {
 }
 
 
-@media (min-width: 675px) {
+@media (min-width: 1000px) {
 	.article-recent {
 		flex-direction: row;
 		justify-content: space-between;
