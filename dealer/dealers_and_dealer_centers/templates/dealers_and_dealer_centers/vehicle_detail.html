@@ -2,25 +2,25 @@
 {% block content %}
 <h2>{{ vehicle.name }}</h2>
 </article>
-<article class="article_images">
-    <div class="article_images-additional">
+<article class="article-images">
+    <div class="article-images-additional">
         {% for vehicle_photo in vehicle.vehicle_images.all|slice:':3' %}
-            <img src="{{vehicle_photo.image.url}}" class="img_additional" onclick="imgFunction(this)">
+            <img src="{{vehicle_photo.image.url}}" class="img-additional" onclick="imgFunction(this)">
         {% endfor %}
     </div>
-    <div class="article_images-additional_1">
+    <div class="article-images-additional-1">
         {% for vehicle_photo in vehicle.vehicle_images.all|slice:'3:6' %}
-            <img src="{{vehicle_photo.image.url}}" class="img_additional" onclick="imgFunction(this)">
+            <img src="{{vehicle_photo.image.url}}" class="img-additional" onclick="imgFunction(this)">
         {% endfor %}
     </div>
-    <div class="article_images-main">
+    <div class="article-images-main">
         {% for vehicle_photo in vehicle.vehicle_images.all|slice:':1' %}
-            <img src="{{vehicle_photo.image.url}}" id="imageField" class="img_main">
+            <img src="{{vehicle_photo.image.url}}" id="imageField" class="img-main">
         {% endfor %}
     </div>
 </article>
-<article class="article_vehicle">
-    <div class="article_vehicle_description">
+<article class="article-vehicle">
+    <div class="article-vehicle-description">
         <p>{{ vehicle.brand }}</p>
         <p>{{ vehicle.model }}</p>
         <p>{{ vehicle.engine }}</p>
@@ -28,7 +28,7 @@
         <p>{{ vehicle.transmission }}</p>
         <p>{{ vehicle.color }}</p>
     </div>
-    <div class="article_vehicle_description">
+    <div class="article-vehicle-description">
         <p>{{ vehicle.year_of_release }}</p>
         <p>{{ vehicle.vehicle_mileage }}</p>
         <p>{{ vehicle.type_of_vehicle_passport }}</p>
@@ -36,8 +36,8 @@
         <p>{{ vehicle.price }} rub</p>
     </div>
 </article>
-<article class="article_dealercenter">
-    <div class="article_dealercenter_description">
+<article class="article-dealer-center">
+    <div class="article-dealer-center-description">
         <h2>{{ vehicle.dealer_center.name }}</h2>
         <p>{{ vehicle.dealer_center.address }}</p>
         <p>{{ vehicle.dealer_center.telephone_number }}</p>

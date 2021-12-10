@@ -49,7 +49,7 @@ class VehicleNewList(ListView):
         return context
 
 
-class VehicleNewListAtDealerCenter(VehicleNewList):
+class VehicleNewAtDealerCenterList(VehicleNewList):
 
     def get_queryset(self, **kwargs):
         obj = Vehicle.objects.filter(archive=False, vehicle_with_mileage=False, dealer_center__slug=self.kwargs['slug'])
@@ -84,4 +84,6 @@ class VehicleWithMileageAtDealerCenterDetail(DetailView):
     model = Vehicle
     template_name = 'dealers_and_dealer_centers/vehicle_detail.html'
     context_object_name = 'vehicle'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug1'
 

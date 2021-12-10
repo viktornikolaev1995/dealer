@@ -1,52 +1,41 @@
 {% extends "dealers_and_dealer_centers/base.html" %}
 {% block content %}
-<div class="container container-flex">
-
-    <aside>
-<!--        {% for dealer in dealers %}-->
-<!--        <p>{{dealer.name}}</p>-->
-<!--        {% endfor %}-->
-    </aside>
-    <main>
-        {% for dealer_center in dealer_centers %}
-        <article class="article-recent">
-            <div class="article-recent-main">
-                <h2>{{ dealer_center.name }}</h2>
-                <p>Услуги:
-                    <ul>
-                        {% if dealer_center.vehicle_sale %}
-                            <li><p>Продажа транспортных средств:
-                                <ul>
-                                    <a href="{% url 'new_vehicles_at_dealer_center' dealer_center.slug %}" class="article-read-more"><li><p>Модельный ряд</p></li></a>
-                                    <a href="{% url 'vehicles_with_mileage_at_dealer_center' dealer_center.slug %}" class="article-read-more"><li><p>Авто с пробегом</p></li></a>
-                                </ul>
-                            </p>
-                            </li>
-                        {% endif %}
-                        {% if dealer_center.vehicle_repair %}
-                            <li>Ремонт транспортных средств</li>
-                        {% endif %}
-                        {% if dealer_center.composition_of_spare_parts %}
-                            <li>Склад запасных частей</li>
-                        {% endif %}
-                        {% if dealer_center.car_warehouse %}
-                            <li>Склад автомобилей</li>
-                        {% endif %}
-                    </ul>
+{% for dealer_center in dealer_centers %}
+<article class="article-recent">
+    <div class="article-recent-main">
+        <h2>{{ dealer_center.name }}</h2>
+        <p>Услуги:
+        <ul>
+            {% if dealer_center.vehicle_sale %}
+            <li><p>Продажа транспортных средств:
+                <ul>
+                    <a href="{% url 'new_vehicles_at_dealer_center' dealer_center.slug %}" class="article-read-more"><li><p>Модельный ряд</p></li></a>
+                    <a href="{% url 'vehicles_with_mileage_at_dealer_center' dealer_center.slug %}" class="article-read-more"><li><p>Авто с пробегом</p></li></a>
+                </ul>
                 </p>
-                <p>Адрес: {{ dealer_center.address }}</p>
-                <p>Номер: {{ dealer_center.telephone_number }}</p>
-            </div>
-            <div class="article-recent-secondary">
-                {% if dealer_center.image %}
-                    <img src="{{dealer_center.image.url}}" class="article-image">
-                {% else %}
-                    <img src="#" class="article-image">
-                {% endif %}
-            </div>
-        </article>
-        {% endfor %}
-    </main>
-    <aside></aside>
-</div>
+            </li>
+            {% endif %}
+            {% if dealer_center.vehicle_repair %}
+            <li>Ремонт транспортных средств</li>
+            {% endif %}
+            {% if dealer_center.composition_of_spare_parts %}
+            <li>Склад запасных частей</li>
+            {% endif %}
+            {% if dealer_center.car_warehouse %}
+            <li>Склад автомобилей</li>
+            {% endif %}
+        </ul>
+        </p>
+        <p>Адрес: {{ dealer_center.address }}</p>
+        <p>Номер: {{ dealer_center.telephone_number }}</p>
+    </div>
+    <div class="article-recent-secondary">
+        {% if dealer_center.image %}
+        <img src="{{dealer_center.image.url}}" class="article-image">
+        {% else %}
+        <img src="#" class="article-image">
+        {% endif %}
+    </div>
+</article>
+{% endfor %}
 {% endblock %}

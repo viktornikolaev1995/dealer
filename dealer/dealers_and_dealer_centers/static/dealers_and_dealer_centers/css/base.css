@@ -199,30 +199,21 @@ nav a:focus {
 
 /*content*/
 
-.article_images,
-.article_vehicle,
-.article_dealercenter {
+.article-images,
+.article-vehicle,
+.article-vehicles,
+.article-dealer-center {
 	display: flex;
 	flex-direction: column;
 }
 
-/*.article_images {
-	padding: 45px;
-}
-*/
-/*.article_vehicle,
-.article_dealercenter {
-	margin-left: 9.5rem;
-}
-*/
-
-.img_main,
-.img_additional {
+.img-main,
+.img-additional {
 	margin-bottom: 0.5rem;
 }
 
 
-.article_images-main {
+.article-images-main {
 /*
 order определяет порядок, используемый для размещения flex элементов в их flex контейнере.
 Элементы располагаются в восходящем порядке по значению order.
@@ -231,20 +222,21 @@ order определяет порядок, используемый для ра�
 	order: 1;
 }
 
-.article_images-additional {
+.article-images-additional {
 	order: 2;
 }
 
-.article_images-additional_1 {
+.article-images-additional-1 {
 	order: 3;
 }
 
-/*@media (max-width: 675px) {
-	.article_vehicle,
-	.article_dealercenter {
-		margin-left: 0;
-	}
-}*/
+.article-vehicle-main {
+    order: 2;
+}
+
+.article-vehicle-secondary {
+    order: 1;
+}
 
 @media (max-width: 737px) {
 	nav ul {
@@ -282,24 +274,24 @@ order определяет порядок, используемый для ра�
 	}
 
 
-	.article_images {
+	.article-images {
 		flex-direction: row;
 		justify-content: space-between;
 	}
 
-	.article_images-additional {
+	.article-images-additional {
 		width: 20%;
 	}
 
-	.article_images-additional_1 {
+	.article-images-additional-1 {
 		width: 20%;
 	}
 
-	.article_images-main {
+	.article-images-main {
 		width: 57.5%;
 	}
 
-    .img_main {
+    .img-main {
     	width: 100%;
     	height: 100%;
 /*
@@ -310,7 +302,7 @@ cover: Смещаемый контент меняет свой размер та
     	object-fit: cover;
     }
 
-    .img_additional {
+    .img-additional {
 /*
 cursor определяет курсор мыши, отображаемый при наведении указателя мыши на элемент
 pointer: Указатель, обозначающий ссылку, обычно указующая рука
@@ -323,26 +315,40 @@ pointer: Указатель, обозначающий ссылку, обычно
     	margin: 0.5rem 0;
     }
 
-    .img_additional:hover {
+    .img-additional:hover {
     	opacity: 1;
     }
 
-    .article_vehicle {
+    .article-vehicle {
     	flex-direction: row;
     	justify-content: left;
     }
 
-    .article_vehicle_description {
+    .article-vehicle-description {
     	width: 32.5%;
     	margin: 0 0.75rem;
     }
 
-	.article_dealercenter {
+    .article-vehicles {
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+    }
+
+    .article-vehicle-main {
+        width: 48.75%;
+    }
+
+    .article-vehicle-secondary {
+        width: 48.75%;
+    }
+
+	.article-dealer-center {
 		flex-direction: row;
 		justify-content: space-between;
 	}
 
-	.article_dealercenter_description {
+	.article-dealer-center-description {
 		margin: 0 0.75rem;
 	}
 

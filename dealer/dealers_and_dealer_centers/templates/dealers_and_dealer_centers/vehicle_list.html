@@ -1,29 +1,21 @@
 {% extends "dealers_and_dealer_centers/base.html" %}
 {% block content %}
-<div class="container container-flex">
-    <aside>
-    </aside>
-    <main>
-
-        {% for vehicle in vehicles %}
-        <article class="article-recent">
-            <div class="article-recent-main">
-                <a href="{% url 'vehicle_with_mileage_at_dealer_center' slug=vehicle.slug %}"><h4>{{ vehicle.name }}</h4></a>
-                <p>Марка: {{ vehicle.dealer_center__slug }}</p>
-                <p>Марка: {{ vehicle.brand }}</p>
-                <p>Модель: {{ vehicle.car_model }}</p>
-                <p>VIN: {{ vehicle.vin|slice:':8'|add:'*********' }}</p>
-                <p>Двигатель: {{ vehicle.engine }}</p>
-                <p>Год: {{ vehicle.year_of_release }}</p>
-                <p>Дилерский центр: {{ vehicle.dealer_center }}</p>
-                <p>Цена: {{ vehicle.price }} руб</p>
-            </div>
-            <div class="article-recent-secondary">
-                <img src="{{vehicle.image.url}}" class="article-image" width="500" height="500">
-            </div>
-        </article>
-        {% endfor %}
-    </main>
-    <aside></aside>
-</div>
+{% for vehicle in vehicles %}
+<article class="article-vehicles">
+    <div class="article-vehicle-main">
+        <a href="{% url 'vehicle_with_mileage_at_dealer_center' slug=vehicle.dealer_center.slug slug1=vehicle.slug %}"><h4>{{ vehicle.name }}</h4></a>
+        <p>Марка: {{ vehicle.dealer_center__slug }}</p>
+        <p>Марка: {{ vehicle.brand }}</p>
+        <p>Модель: {{ vehicle.car_model }}</p>
+        <p>VIN: {{ vehicle.vin|slice:':8'|add:'*********' }}</p>
+        <p>Двигатель: {{ vehicle.engine }}</p>
+        <p>Год: {{ vehicle.year_of_release }}</p>
+        <p>Дилерский центр: {{ vehicle.dealer_center }}</p>
+        <p>Цена: {{ vehicle.price }} руб</p>
+    </div>
+    <div class="article-vehicle-secondary">
+        <img src="{{vehicle.image.url}}" class="img-main">
+    </div>
+</article>
+{% endfor %}
 {% endblock %}
