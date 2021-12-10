@@ -1,0 +1,419 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
+
+/*
+	Fonts
+	-----
+	font-family" 'Lora', serif;
+	font-family: 'Ubuntu', sans-serif;
+*/
+
+body {
+/*
+Свойство margin CSS определяет внешний отступ на всех четырёх сторонах элемента.
+Это сокращение, которое устанавливает все отдельные поля одновременно: margin-top, margin-right, margin-bottom и margin-left.
+*/
+	margin: 0;
+	/*Устанавливает семейство шрифта, которое будет использоваться для оформления текста содержимого*/
+	font-family: 'Ubuntu', sans-serif;
+	/*Определяет размер шрифта элемента
+
+Rem — это корневой em (Root Em). Он создан, чтобы облегчить вычислительные проблемы, с которыми многие иногда сталкиваются.
+Это единица типографики, равная корневому (базовому) значению font-size.
+Это значит, что 1rem всегда будет равен значению font-size, которое было определено в html.
+*/
+	font-size: 1.125rem;
+/*
+font-weight	Насыщенность шрифта задаётся с помощью ключевых слов: bold — полужирное начертание, normal — нормальное начертание.
+Также допустимо использовать условные единицы от 100 до 900.
+Значения bolder и lighter изменяют жирность относительно насыщенности родителя,
+соответственно, в большую и меньшую сторону.
+*/
+	font-weight: 300;
+}
+
+img {
+/*
+Устанавливает максимальную ширину элемента.
+Значение ширины элемента будет вычисляться в зависимости от значений установленных свойств width, max-width и min-width.
+*/
+	max-width: 100%;
+/*
+display inline
+Элементы располагаются на той же строке, последовательно.
+Ширина и высота элемента определяются по содержимому. Поменять их нельзя.
+Например, инлайновые элементы по умолчанию: <span>, <a>.
+
+display blok
+Блочные элементы располагаются один над другим, вертикально (если нет особых свойств позиционирования, например float).
+Блок стремится расшириться на всю доступную ширину. Можно указать ширину и высоту явно.
+Это значение display многие элементы имеют по умолчанию: <div>, заголовок <h1>, параграф <p>.
+*/
+	display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: 'Lora', serif;
+	font-weight: 400;
+	color: #143774;
+}
+
+h1 {
+/*	font-size: 2rem;*/
+	margin: 0;
+}
+
+a {
+	color: #1792d2;
+	text-decoration: none;
+}
+
+/*
+hover определяет стиль элемента при наведении на него курсора мыши, но при этом элемент еще не активирован, иными словами кнопка мыши не нажата
+*/
+a:hover,
+/*
+focus применяется, когда элемент (такой как input формы) получает фокус.
+Обычно он активируется при клике мышью пользователем или при выборе элемента с использованием клавиши "tab" на клавиатуре.
+*/
+a:focus {
+/*	color: #143774;*/
+	color: peachpuff;
+
+/*
+text-decoration добавляет оформление текста в виде его подчеркивания, перечеркивания, линии над текстом и мигания.
+Одновременно можно применить более одного стиля, перечисляя значения через пробел.
+line-through:  Создает перечеркнутый текст
+overline:  Линия проходит над текстом
+underline: Устанавливает подчеркнутый текст
+none: Отменяет все эффекты, в том числе и подчеркивания у ссылок, которое задано по умолчанию.
+inherit: Значение наследуется у родителя
+*/
+
+	text-decoration: underline;
+}
+
+/*Тег <strong> предназначен для акцентирования текста. Браузеры отображают такой текст жирным начертанием.
+*/
+strong {
+	font-weight: 700;
+}
+
+.subtitle {
+	font-weight: 700;
+	color: #1792d2;
+	font-size: 0.75rem;
+  	margin: 0;
+}
+
+.container {
+	width: 95%;
+/*
+margin CSS определяет внешний отступ на всех четырёх сторонах элемента.
+Это сокращение, которое устанавливает все отдельные поля одновременно: margin-top, margin-right, margin-bottom и margin-left.
+*/
+	margin: 0 auto;
+	padding: 0 auto;
+
+/*
+margin: 5%;                 все стороны:  отступ 5%
+
+margin: 10px;               все стороны:  отступ 10px
+
+margin: 1.6em 20px;         верх и низ:   отступ 1.6em
+                            право и лево: отступ 20px
+
+margin: 10px 3% 1em;        верх:         отступ 10px
+                            право и лево: отступ 3%
+                            низ:          отступ 1em
+
+margin: 10px 3px 30px 5px;  верх:   отступ 10px
+                            право:  отступ 3px
+														низ:    отступ 30px
+                            лево:   отступ 5px
+
+margin: 2em auto;           верх и низ: отступ 2em
+                            блок отцентрирован горизонтально
+
+margin: auto;               верх и низ: отступ 0
+                            блок отцентрирован горизонтально
+                            */
+
+}
+
+.container-flex {
+	/*контейнер становится гибким, установив display свойство в значение flex*/
+	display: flex;
+	/*расположение блоков по вертикали*/
+	flex-direction: column;
+	/*определяет, как браузер распределяет пространство между и вокруг элементов контента вдоль главной оси flex контейнера, или вдоль строчной оси grid контейнера.*/
+	justify-content: space-between;
+	padding: 0 150px; /*для центрирования элементов изображения и текста <1000px*/
+	margin-bottom: 150px; /*для отступа от footer'a*/
+}
+
+header {
+	background: #f8f8f8;
+	padding: 2rem 0;
+	text-align: center;
+	margin-bottom: 0.5rem;
+}
+
+/*navigation*/
+
+nav ul {
+/*
+list-style позволяет одновременно задать стиль маркера, его положение, а также изображение, которое будет использоваться в качестве маркера списка
+*/
+	list-style: none;
+/*
+padding устанавливает внутренние отступы/поля со всех сторон элемента.
+Область отступов это пространство между содержанием элемента и его границей.
+Отрицательные значения не допускаются.
+*/
+	padding: 0;
+	display: flex;
+	justify-content: center;
+
+}
+
+nav li {
+	margin-left: 2em;
+}
+
+nav a {
+	text-decoration: none;
+	color: #707070;
+	font-weight: 700;
+	padding: .25em 0;
+}
+
+nav a:hover,
+nav a:focus {
+	color: #1792d2;
+}
+
+
+/*content*/
+
+.article_images,
+.article_vehicle,
+.article_dealercenter {
+	display: flex;
+	flex-direction: column;
+}
+
+/*.article_images {
+	padding: 45px;
+}
+*/
+/*.article_vehicle,
+.article_dealercenter {
+	margin-left: 9.5rem;
+}
+*/
+
+.img_main,
+.img_additional {
+	margin-bottom: 0.5rem;
+}
+
+
+.article_images-main {
+/*
+order определяет порядок, используемый для размещения flex элементов в их flex контейнере.
+Элементы располагаются в восходящем порядке по значению order.
+Элементы с одинаковым значением order  располагаются в том порядке, в каком они находятся в исходном коде
+*/
+	order: 1;
+}
+
+.article_images-additional {
+	order: 2;
+}
+
+.article_images-additional_1 {
+	order: 3;
+}
+
+/*@media (max-width: 675px) {
+	.article_vehicle,
+	.article_dealercenter {
+		margin-left: 0;
+	}
+}*/
+
+@media (max-width: 737px) {
+	nav ul {
+		flex-direction: column;
+	}
+
+	nav li {
+		margin: 0.5rem 0;
+	}
+
+	.footer-left ul {
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 675px) {
+
+	.container-flex {
+		padding: 0;
+	}
+}
+
+@media (min-width: 1000px) {
+	.container-flex {
+		flex-direction: row;
+		padding: 0;
+	}
+
+	main {
+		width: 55%;
+	}
+
+	aside {
+		width: 20%;
+	}
+
+
+	.article_images {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.article_images-additional {
+		width: 20%;
+	}
+
+	.article_images-additional_1 {
+		width: 20%;
+	}
+
+	.article_images-main {
+		width: 57.5%;
+	}
+
+    .img_main {
+    	width: 100%;
+    	height: 100%;
+/*
+object-fit определяет, как содержимое заменяемого элемента, такого как <img> или <video>, должно заполнять контейнер относительно его высоты и ширины.
+cover: Смещаемый контент меняет свой размер таким образом, чтобы сохранять свои пропорции при заполнении блока:
+окончательный размер контента будет определён как "покрытие" блока, ограничиваясь его шириной и высотой.
+*/
+    	object-fit: cover;
+    }
+
+    .img_additional {
+/*
+cursor определяет курсор мыши, отображаемый при наведении указателя мыши на элемент
+pointer: Указатель, обозначающий ссылку, обычно указующая рука
+*/
+    	cursor: pointer;
+ /*
+ opacity устанавливает непрозрачность элемента. Непрозрачность - это степень, в которой содержимое скрывается за элементом, является противоположностью прозрачности.
+ */
+    	opacity: .8;
+    	margin: 0.5rem 0;
+    }
+
+    .img_additional:hover {
+    	opacity: 1;
+    }
+
+    .article_vehicle {
+    	flex-direction: row;
+    	justify-content: left;
+    }
+
+    .article_vehicle_description {
+    	width: 32.5%;
+    	margin: 0 0.75rem;
+    }
+
+	.article_dealercenter {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.article_dealercenter_description {
+		margin: 0 0.75rem;
+	}
+
+/*	.article_vehicle,
+	.article_dealercenter {
+		margin-left: 0;
+	}*/
+}
+
+/*footer*/
+
+.container-footer {
+	display: flex;
+ 	position: fixed;
+	justify-content: space-between;
+ 	background-color: #292c2f;
+ 	width: 100%;
+	font-family: 'Lora', serif;
+ 	padding: 25px 30px;
+  	bottom: 0;
+}
+
+.footer-right {
+	order: 2;
+	margin-right: 6rem;
+}
+
+.footer-left {
+	order: 1;
+}
+
+.footer-right ul,
+.footer-left ul {
+	display: flex;
+	list-style: none;
+}
+
+.footer-right li {
+	margin-left: 0.5rem;
+}
+
+.footer-right a,
+.footer-left a,
+.footer-left p {
+	color: #ffffff;
+}
+
+.footer-left a:hover,
+.footer-left a:focus {
+	color: #1792d2;
+
+}
+
+.footer-left li {
+	margin-left: 1rem;
+}
+
+.footer-left p {
+	margin-left: 3.5rem;
+	font-size: 0.9rem;
+}
+
+
+.fa-facebook:hover {
+	background-color: #3d5b99;
+}
+
+.fa-instagram:hover {
+	background: #d6249f; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+
+.fa-youtube:hover {
+	background-color: #e64a41;
+}

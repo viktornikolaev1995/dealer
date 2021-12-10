@@ -114,6 +114,7 @@ class VehiclePhotos(models.Model):
 		Vehicle,
 		on_delete=models.CASCADE,
 		verbose_name="Транспортное средство",
+		related_name='vehicle_images',
 		blank=True,
 		null=True
 	)

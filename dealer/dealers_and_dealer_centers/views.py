@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Dealer, DealerCenter, Vehicle
 
 
@@ -79,3 +79,9 @@ class VehicleWithMileageAtDealerCenterList(VehicleWithMileageList):
         if obj.exists():
             return obj
         raise Http404
+
+class VehicleWithMileageAtDealerCenterDetail(DetailView):
+    model = Vehicle
+    template_name = 'dealers_and_dealer_centers/vehicle_detail.html'
+    context_object_name = 'vehicle'
+

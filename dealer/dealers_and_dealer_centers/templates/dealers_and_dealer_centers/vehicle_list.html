@@ -1,13 +1,15 @@
-{% extends "dealers_and_dealer_centers/dealers_list.html" %}
+{% extends "dealers_and_dealer_centers/base.html" %}
 {% block content %}
 <div class="container container-flex">
     <aside>
     </aside>
     <main>
+
         {% for vehicle in vehicles %}
         <article class="article-recent">
             <div class="article-recent-main">
-                <h4>{{ vehicle.name }}</h4>
+                <a href="{% url 'vehicle_with_mileage_at_dealer_center' slug=vehicle.slug %}"><h4>{{ vehicle.name }}</h4></a>
+                <p>Марка: {{ vehicle.dealer_center__slug }}</p>
                 <p>Марка: {{ vehicle.brand }}</p>
                 <p>Модель: {{ vehicle.car_model }}</p>
                 <p>VIN: {{ vehicle.vin|slice:':8'|add:'*********' }}</p>

@@ -1,43 +1,19 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-	<link href="https://fonts.googleapis.com/css?family=Lora|Ubuntu:400,700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="{% static 'dealers_and_dealer_centers/css/main.css' %}">
-</head>
-<body>
-{% include 'dealers_and_dealer_centers/navbar.html' %}
-
+{% extends "dealers_and_dealer_centers/base.html" %}
 {% block content %}
-<div class="container container-flex">
-
-    <aside>
-<!--        {% for dealer in dealers %}-->
-<!--        <p>{{dealer.name}}</p>-->
-<!--        {% endfor %}-->
-    </aside>
-    <main>
-        {% for dealer in dealers %}
-        <article class="article-recent">
-            <div class="article-recent-main">
-                <h2>{{ dealer.name }}</h2>
-                <p>Дилерские центры:
-                    {% for dealer_center in dealer.car_saloons.all %}
-                        {{dealer_center.name}}
-                    {% endfor %}
-                </p>
-            </div>
-            <div class="article-recent-secondary">
-                <img src="{{dealer.image.url}}" class="article-image">
-            </div>
-        </article>
-        {% endfor %}
-    </main>
-    <aside></aside>
-</div>
+    {% for dealer in dealers %}
+    <article class="article-recent">
+        <div class="article-recent-main">
+            <h2>{{ dealer.name }}</h2>
+            <p>Дилерские центры:
+                {% for dealer_center in dealer.car_saloons.all %}
+                {{dealer_center.name}}
+                {% endfor %}
+            </p>
+        </div>
+        <div class="article-recent-secondary">
+            <img src="{{dealer.image.url}}" class="article-image">
+        </div>
+    </article>
+    {% endfor %}
 {% endblock %}
-{% include 'dealers_and_dealer_centers/footer.html' %}
-</body>
-</html>
+
