@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'dealer3_db',
         'USER': 'dealer_user',
         'PASSWORD': 'user!,1',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': 5432
     }
 }

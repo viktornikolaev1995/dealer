@@ -21,19 +21,19 @@
 </article>
 <article class="article-vehicle">
     <div class="article-vehicle-description">
-        <p>{{ vehicle.brand }}</p>
-        <p>{{ vehicle.model }}</p>
-        <p>{{ vehicle.engine }}</p>
-        <p>{{ vehicle.vin }}</p>
-        <p>{{ vehicle.transmission }}</p>
-        <p>{{ vehicle.color }}</p>
+        <p>Марка: {{ vehicle.brand }}</p>
+        <p>Модель: {{ vehicle.model }}</p>
+        <p>Двигатель: {{ vehicle.engine }}</p>
+        <p>VIN: {{ vehicle.vin|slice:':8'|add:'*********' }}</p>
+        <p>Трансмиссия: {{ vehicle.transmission }}</p>
+        <p>Цвет: {{ vehicle.color }}</p>
     </div>
     <div class="article-vehicle-description">
-        <p>{{ vehicle.year_of_release }}</p>
-        <p>{{ vehicle.vehicle_mileage }}</p>
-        <p>{{ vehicle.type_of_vehicle_passport }}</p>
-        <p>{{ vehicle.owners }}</p>
-        <p>{{ vehicle.price }} rub</p>
+        <p>Год: {{ vehicle.year_of_release }}</p>
+        <p>Пробег: {{ vehicle.vehicle_mileage }}</p>
+        <p>ПТС: {{ vehicle.type_of_vehicle_passport }}</p>
+        <p>Владельцев: {{ vehicle.owners }}</p>
+        <h3>Цена {{ vehicle.price }} rub</h3>
     </div>
 </article>
 <article class="article-dealer-center">
