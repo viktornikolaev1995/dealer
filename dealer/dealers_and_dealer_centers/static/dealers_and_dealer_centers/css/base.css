@@ -61,7 +61,8 @@ h5 {
 	color: #143774;
 }
 
-h1 {
+h1,
+h2 {
 /*	font-size: 2rem;*/
 	margin: 0;
 }
@@ -198,12 +199,21 @@ nav a:focus {
 
 /*content*/
 
-.article-images,
-.article-vehicle,
-.article-vehicles,
-.article-dealer-center {
+.vehicle-images,
+.vehicle,
+.vehicles,
+.dealer-center {
 	display: flex;
 	flex-direction: column;
+}
+
+.dealer-center {
+    border-style: solid;
+    border-width: 0.1rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border-color: #FAF0E6;
+
 }
 
 .img-main,
@@ -212,7 +222,7 @@ nav a:focus {
 }
 
 
-.article-images-main {
+.vehicle-image-main {
 /*
 order определяет порядок, используемый для размещения flex элементов в их flex контейнере.
 Элементы располагаются в восходящем порядке по значению order.
@@ -221,19 +231,20 @@ order определяет порядок, используемый для ра�
 	order: 1;
 }
 
-.article-images-additional {
+.vehicle-images-additional-1 {
 	order: 2;
 }
 
-.article-images-additional-1 {
+.vehicle-images-additional-2 {
 	order: 3;
 }
 
-.article-vehicle-main {
+.vehicle-main,
+.dealer-center-main {
     order: 2;
 }
 
-.article-vehicle-secondary {
+.dealer-center-secondary {
     order: 1;
 }
 
@@ -268,21 +279,20 @@ order определяет порядок, используемый для ра�
 		width: 20%;
 	}
 
-
-	.article-images {
+	.vehicle-images {
 		flex-direction: row;
 		justify-content: space-between;
 	}
 
-	.article-images-additional {
+	.vehicle-images-additional-1 {
 		width: 20%;
 	}
 
-	.article-images-additional-1 {
+	.vehicle-images-additional-2 {
 		width: 20%;
 	}
 
-	.article-images-main {
+	.vehicle-image-main {
 		width: 57.5%;
 	}
 
@@ -314,36 +324,39 @@ pointer: Указатель, обозначающий ссылку, обычно
     	opacity: 1;
     }
 
-    .article-vehicle {
+    .vehicle {
     	flex-direction: row;
     	justify-content: left;
     }
 
-    .article-vehicle-description {
+    .vehicle-description {
     	width: 32.5%;
     	margin: 0 0.75rem;
     }
 
-    .article-vehicles {
+    .vehicles,
+    .dealer-center {
         flex-direction: row;
         justify-content: space-between;
         margin-bottom: 2rem;
     }
 
-    .article-vehicle-main {
+    .vehicle-main,
+    .dealer-center-main {
         width: 48.75%;
     }
 
-    .article-vehicle-secondary {
+    .vehicle-secondary,
+    .dealer-center-secondary {
         width: 48.75%;
     }
 
-	.article-dealer-center {
+	.vehicle-at-dealer-center {
 		flex-direction: row;
 		justify-content: space-between;
 	}
 
-	.article-dealer-center-description {
+	.vehicle-at-dealer-center-description {
 		margin: 0 0.75rem;
 	}
 

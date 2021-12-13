@@ -1,26 +1,25 @@
 {% extends "dealers_and_dealer_centers/dealers_list.html" %}
 {% block content %}
 <h2>{{ vehicle.name }}</h2>
-</article>
-<article class="article-images">
-    <div class="article-images-additional">
+<article class="vehicle-images">
+    <div class="vehicle-images-additional-1">
         {% for vehicle_photo in vehicle.vehicle_images.all|slice:':3' %}
             <img src="{{vehicle_photo.image.url}}" class="img-additional" onclick="imgFunction(this)">
         {% endfor %}
     </div>
-    <div class="article-images-additional-1">
+    <div class="vehicle-images-additional-2">
         {% for vehicle_photo in vehicle.vehicle_images.all|slice:'3:6' %}
             <img src="{{vehicle_photo.image.url}}" class="img-additional" onclick="imgFunction(this)">
         {% endfor %}
     </div>
-    <div class="article-images-main">
+    <div class="vehicle-image-main">
         {% for vehicle_photo in vehicle.vehicle_images.all|slice:':1' %}
             <img src="{{vehicle_photo.image.url}}" id="imageField" class="img-main">
         {% endfor %}
     </div>
 </article>
-<article class="article-vehicle">
-    <div class="article-vehicle-description">
+<article class="vehicle">
+    <div class="vehicle-description">
         <p>Марка: {{ vehicle.brand }}</p>
         <p>Модель: {{ vehicle.model }}</p>
         <p>Двигатель: {{ vehicle.engine }}</p>
@@ -28,7 +27,7 @@
         <p>Трансмиссия: {{ vehicle.transmission }}</p>
         <p>Цвет: {{ vehicle.color }}</p>
     </div>
-    <div class="article-vehicle-description">
+    <div class="vehicle-description">
         <p>Год: {{ vehicle.year_of_release }}</p>
         <p>Пробег: {{ vehicle.vehicle_mileage }}</p>
         <p>ПТС: {{ vehicle.type_of_vehicle_passport }}</p>
@@ -36,8 +35,8 @@
         <h3>Цена {{ vehicle.price }} руб</h3>
     </div>
 </article>
-<article class="article-dealer-center">
-    <div class="article-dealer-center-description">
+<article class="vehicle-at-dealer-center">
+    <div class="vehicle-at-dealer-center-description">
         <h2>{{ vehicle.dealer_center.name }}</h2>
         <p>{{ vehicle.dealer_center.address }}</p>
         <p>{{ vehicle.dealer_center.telephone_number }}</p>

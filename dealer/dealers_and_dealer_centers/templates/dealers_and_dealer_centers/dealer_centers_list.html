@@ -3,8 +3,8 @@
 {% for dealer_center in dealer_centers %}
 {% url 'new_vehicles_at_dealer_center' dealer_center.slug as new_vehicles_at_dealer_center_url %}
 {% url 'vehicles_with_mileage_at_dealer_center' dealer_center.slug as vehicles_with_mileage_at_dealer_center_url %}
-<article class="article-recent">
-    <div class="article-recent-main">
+<article class="dealer-center">
+    <div class="dealer-center-main">
         <h2>{{ dealer_center.name }}</h2>
         <p>Услуги:
         <ul>
@@ -47,11 +47,11 @@
         <p>Адрес: {{ dealer_center.address }}</p>
         <p>Номер: {{ dealer_center.telephone_number }}</p>
     </div>
-    <div class="article-recent-secondary">
+    <div class="dealer-center-secondary">
         {% if dealer_center.image %}
         <img src="{{ dealer_center.image.url }}" class="article-image">
         {% else %}
-        <img src="#" class="article-image">
+        <img src="#" class="img-main">
         {% endif %}
     </div>
 </article>
