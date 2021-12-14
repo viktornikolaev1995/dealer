@@ -295,10 +295,6 @@ order определяет порядок, используемый для ра�
     resize: none;
 }
 
-.form-content input:focus + label {
-    font-family: font-family: 'Lora', serif;
-}
-
 .form-content {
     border: 1px solid gold;
 }
