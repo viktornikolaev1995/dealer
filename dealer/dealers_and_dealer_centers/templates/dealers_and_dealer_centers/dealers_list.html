@@ -7,7 +7,7 @@
             <p>{{ dealer.description }}</p>
             <ul>Дилерские центры:
                 {% for dealer_center in dealer.car_saloons.all %}
-                <li>{{dealer_center.name}}</li>
+                <a href="{% url 'dealer_center' dealer_center.slug %}"><li>{{dealer_center.name}}</li></a>
                 {% endfor %}
             </ul>
         </div>

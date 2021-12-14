@@ -82,6 +82,14 @@ class VehicleWithMileageAtDealerCenterList(VehicleWithMileageList):
             return obj
         raise Http404
 
+class DealerCenterDetail(DetailView):
+    model = DealerCenter
+    template_name = 'dealers_and_dealer_centers/dealer_center_detail.html'
+    context_object_name = 'dealer_center'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+
+
 class VehicleWithMileageAtDealerCenterDetail(DetailView):
     model = Vehicle
     template_name = 'dealers_and_dealer_centers/vehicle_detail.html'

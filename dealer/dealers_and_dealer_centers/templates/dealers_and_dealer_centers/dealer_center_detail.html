@@ -1,10 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "dealers_and_dealer_centers/base.html" %}
+{% block content %}
+{% url 'new_vehicles_at_dealer_center' dealer_center.slug as new_vehicles_at_dealer_center_url %}
+{% url 'vehicles_with_mileage_at_dealer_center' dealer_center.slug as vehicles_with_mileage_at_dealer_center_url %}
+<article class="dealer-center">
+    <div class="dealer-center-main">
+        <h2>{{ dealer_center.name }}</h2>
+        <p>Услуги:
+        <ul>
+            {% if dealer_center.vehicle_sale %}
+            <li><p>Продажа транспортных средств:
+                <ul>
+                    {% if new_vehicles_at_dealer_center_url %}
+                        <a href="{{ new_vehicles_at_dealer_center_url }}" class="article-read-more">
+                            <li><p>Модельный ряд</p></li>
+                        </a>
+                    {% else %}
+                        <a href="{{ new_vehicles_at_dealer_center_url }}" class="article-read-more" onclick="return false;">
+                            <li><p>Модельный ряд</p></li>
+                        </a>
+                    {% endif %}
+                    {% if vehicles_with_mileage_at_dealer_center_url %}
+                        <a href="{{ vehicles_with_mileage_at_dealer_center_url }}" class="article-read-more">
+                        <li><p>Авто с пробегом</p></li>
+                        </a>
+                    {% else %}
+                        <a href="{{ vehicles_with_mileage_at_dealer_center_url }}" class="article-read-more" onclick="return false;">
+                        <li><p>Авто с пробегом</p></li>
+                        </a>
+                    {% endif %}
+                </ul>
+                </p>
+            </li>
+            {% endif %}
+            {% if dealer_center.vehicle_repair %}
+            <li>Ремонт транспортных средств</li>
+            {% endif %}
+            {% if dealer_center.composition_of_spare_parts %}
+            <li>Склад запасных частей</li>
+            {% endif %}
+            {% if dealer_center.car_warehouse %}
+            <li>Склад автомобилей</li>
+            {% endif %}
+        </ul>
+        </p>
+        <p>Адрес: {{ dealer_center.address }}</p>
+        <p>Номер: {{ dealer_center.telephone_number }}</p>
+        <h3 class="form-title">Оставить отзыв</h3>
+        <form action="{% url 'add_review' dealer_center.id %}" method="post">
+            {% csrf_token %}
+            <div class="form">
+            <div class="form-content">
+                <input type="text" name="name" placeholder="Имя *" required="">
+            </div>
+            <div class="form-content">
+                <textarea name="text" rows="5" placeholder="Текст *" required=""></textarea>
+            </div>
+            <div class="form-content">
+                <input type="email" name="email" placeholder="Email *" required="">
+            </div>
+            <button type="submit" class="form-bttn">Отправить</button>
+            </div>
+        </form>
+    </div>
+    <div class="dealer-center-secondary">
+        {% if dealer_center.image %}
+        <img src="{{ dealer_center.image.url }}" class="article-image">
+        {% else %}
+        <img src="#" class="img-main">
+        {% endif %}
+    </div>
+</article>
+{% endblock %}
