@@ -77,7 +77,7 @@ h2 {
 }
 
 a {
-	color: #2F4F4F;/*#1792d2;*/
+	color: #2F4F4F;/*#2F4F4F;/*#1792d2;*/
 	text-decoration: none;
 }
 
@@ -161,7 +161,7 @@ margin: auto;               верх и низ: отступ 0
 	/*определяет, как браузер распределяет пространство между и вокруг элементов контента вдоль главной оси flex контейнера, или вдоль строчной оси grid контейнера.*/
 	justify-content: space-between;
 	padding: 0 150px; /*для центрирования элементов изображения и текста <1000px*/
-	margin-bottom: 185px; /*для отступа от footer'a*/
+	margin-bottom: 150px; /*для отступа от footer'a*/
 }
 
 header {
@@ -266,6 +266,27 @@ order определяет порядок, используемый для ра�
 .dealer-main,
 .dealer-center-main {
     order: 2;
+}
+
+ul.vehicle-sales {
+    list-style-type: "\27AA";
+}
+
+li.vehicle-sales {
+    margin-top: 0.5rem;
+}
+
+.dealer-main ul.dealer-centers,
+.dealer-center-main ul.vehicle-services {
+    list-style-type: "\2705";
+}
+
+.dealer-main li {
+    margin-top: 0.5rem;
+}
+
+.dealer-center-main li {
+    margin-bottom: 0.5rem;
 }
 
 .dealer-secondary,

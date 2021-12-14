@@ -37,7 +37,7 @@
 </article>
 <article class="vehicle-at-dealer-center">
     <div class="vehicle-at-dealer-center-description">
-        <h2>{{ vehicle.dealer_center.name }}</h2>
+        <a href="{% url 'dealer_center' vehicle.dealer_center.slug %}"><h2>{{ vehicle.dealer_center.name }}</h2></a>
         <p>{{ vehicle.dealer_center.address }}</p>
         <p>{{ vehicle.dealer_center.telephone_number }}</p>
     </div>

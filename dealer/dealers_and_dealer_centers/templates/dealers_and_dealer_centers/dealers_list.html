@@ -3,16 +3,16 @@
     {% for dealer in dealers %}
     <article class="dealer">
         <div class="dealer-main">
-            <h2>{{ dealer.name }}</h2>
+            <h3>{{ dealer.name }}</h3>
             <p>{{ dealer.description }}</p>
-            <ul>Дилерские центры:
+            <ul class="dealer-centers"><h3>Дилерские центры:</h3>
                 {% for dealer_center in dealer.car_saloons.all %}
                 <a href="{% url 'dealer_center' dealer_center.slug %}"><li>{{dealer_center.name}}</li></a>
                 {% endfor %}
             </ul>
         </div>
         <div class="dealer-secondary">
-            <img src="{{dealer.image.url}}" class="img-main">
+            <img src="{{dealer.image.url}}" class="article-image">
         </div>
     </article>
     {% endfor %}

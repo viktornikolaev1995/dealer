@@ -5,31 +5,30 @@
 <article class="dealer-center">
     <div class="dealer-center-main">
         <h2>{{ dealer_center.name }}</h2>
-        <p>Услуги:
-        <ul>
+        <h3>Услуги:</h3>
+        <ul class="vehicle-services">
             {% if dealer_center.vehicle_sale %}
-            <li><p>Продажа транспортных средств:
-                <ul>
+            <li>Продажа транспортных средств:
+                <ul class="vehicle-sales">
                     {% if new_vehicles_at_dealer_center_url %}
-                        <a href="{{ new_vehicles_at_dealer_center_url }}" class="article-read-more">
-                            <li><p>Модельный ряд</p></li>
+                        <a href="{{ new_vehicles_at_dealer_center_url }}">
+                            <li class="vehicle-sales">Модельный ряд</li>
                         </a>
                     {% else %}
-                        <a href="{{ new_vehicles_at_dealer_center_url }}" class="article-read-more" onclick="return false;">
-                            <li><p>Модельный ряд</p></li>
+                        <a href="{{ new_vehicles_at_dealer_center_url }}" onclick="return false;">
+                            <li>Модельный ряд</li>
                         </a>
                     {% endif %}
                     {% if vehicles_with_mileage_at_dealer_center_url %}
-                        <a href="{{ vehicles_with_mileage_at_dealer_center_url }}" class="article-read-more">
-                        <li><p>Авто с пробегом</p></li>
+                        <a href="{{ vehicles_with_mileage_at_dealer_center_url }}">
+                        <li>Авто с пробегом</li>
                         </a>
                     {% else %}
-                        <a href="{{ vehicles_with_mileage_at_dealer_center_url }}" class="article-read-more" onclick="return false;">
-                        <li><p>Авто с пробегом</p></li>
+                        <a href="{{ vehicles_with_mileage_at_dealer_center_url }}" onclick="return false;">
+                        <li>Авто с пробегом</li>
                         </a>
                     {% endif %}
                 </ul>
-                </p>
             </li>
             {% endif %}
             {% if dealer_center.vehicle_repair %}

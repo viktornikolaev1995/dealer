@@ -5,9 +5,9 @@
 {% url 'vehicles_with_mileage_at_dealer_center' dealer_center.slug as vehicles_with_mileage_at_dealer_center_url %}
 <article class="dealer-center">
     <div class="dealer-center-main">
-        <a href="{% url 'dealer_center' dealer_center.slug %}"><h2>{{ dealer_center.name }}</h2></a>
+        <a href="{% url 'dealer_center' dealer_center.slug %}"><h3>{{ dealer_center.name }}</h3></a>
         {% for dealer in dealer_center.dealer_centers.all %}
-            <h3>Дилер: {{ dealer.name }}</h3>
+            <h4>Дилер: {{ dealer.name }}</h4>
         {% endfor %}
         <p>Адрес: {{ dealer_center.address }}</p>
         <p>Номер: {{ dealer_center.telephone_number }}</p>
