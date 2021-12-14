@@ -6,7 +6,8 @@ from .views import (
     VehicleWithMileageList,
     VehicleNewAtDealerCenterList,
     VehicleWithMileageAtDealerCenterList,
-    VehicleWithMileageAtDealerCenterDetail
+    VehicleWithMileageAtDealerCenterDetail,
+    AddDealerCenterReview,
 )
 
 urlpatterns = [
@@ -20,5 +21,6 @@ urlpatterns = [
             name='vehicles_with_mileage_at_dealer_center'),
     re_path(r'^vehicles_with_mileage/(?P<slug>[\D-]+)/(?P<slug1>\D+-\w+-\D+-\d{4}-\d{6})/$',
             VehicleWithMileageAtDealerCenterDetail.as_view(), name='vehicle_with_mileage_at_dealer_center'),
+    path('add_review/<int:pk>/', AddDealerCenterReview.as_view(), name='add_review')
 
 ]

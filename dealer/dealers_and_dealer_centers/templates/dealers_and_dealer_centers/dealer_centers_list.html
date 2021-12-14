@@ -46,6 +46,22 @@
         </p>
         <p>Адрес: {{ dealer_center.address }}</p>
         <p>Номер: {{ dealer_center.telephone_number }}</p>
+        <h3 class="form-title">Оставить отзыв</h3>
+        <form action="{% url 'add_review' dealer_center.id %}" method="post">
+            {% csrf_token %}
+            <div class="form">
+            <div class="form-content">
+                <input type="text" name="name" placeholder="Имя *" required="">
+            </div>
+            <div class="form-content">
+                <textarea name="text" rows="5" placeholder="Текст *" required=""></textarea>
+            </div>
+            <div class="form-content">
+                <input type="email" name="email" placeholder="Email *" required="">
+            </div>
+            <button type="submit" class="form-bttn">Отправить</button>
+            </div>
+        </form>
     </div>
     <div class="dealer-center-secondary">
         {% if dealer_center.image %}

@@ -52,12 +52,20 @@ display block
 	object-fit:cover;
 }
 
+p,
 h1,
 h2,
 h3,
 h4,
 h5 {
 	font-family: 'Lora', serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
 	font-weight: 400;
 	color: #143774;
 }
@@ -218,9 +226,17 @@ nav a:focus {
     border-color: #FAF0E6;
 }
 
+.dealer ul,
+.dealer-center ul {
+    list-style: circle;
+}
+
 .dealer ul {
     padding: 0;
-    list-style: circle;
+}
+
+.dealer-center ul {
+    padding-left: 1rem;
 }
 
 .img-main,
@@ -255,6 +271,46 @@ order определяет порядок, используемый для ра�
 .dealer-secondary,
 .dealer-center-secondary {
     order: 1;
+}
+
+.form {
+    width: 400px;
+}
+
+.form-title {
+    margin-bottom: .5rem;
+}
+
+.form-content {
+    margin-bottom: 0.5rem;
+}
+
+.form-content input,
+.form-content textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-content textarea {
+    resize: none;
+}
+
+.form-content input:focus + label {
+    font-family: font-family: 'Lora', serif;
+}
+
+.form-content {
+    border: 1px solid gold;
+}
+
+.form-bttn {
+    border: none;
+    border-radius: 0.25rem;
+    width: 100%;
+    height: 25px;
+    background-color: #2E8B57;
+    color: #ffffff;
+    font-family: 'Lora', serif;
 }
 
 @media (max-width: 737px) {

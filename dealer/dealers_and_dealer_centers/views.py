@@ -1,7 +1,9 @@
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views import View
 from django.views.generic import ListView, DetailView
 from .models import Dealer, DealerCenter, Vehicle
+from .forms import DealerCenterReviewForm
 
 
 class DealerList(ListView):
@@ -86,4 +88,18 @@ class VehicleWithMileageAtDealerCenterDetail(DetailView):
     context_object_name = 'vehicle'
     slug_field = 'slug'
     slug_url_kwarg = 'slug1'
+
+
+class AddDealerCenterReview(View):
+    """Отзывы дилерского центра"""
+
+    def post(self, request, pk):
+        form = DealerCenterReviewForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.dealer_center_id = pk
+            form.save()
+
+        return redirect("/")
+
 
