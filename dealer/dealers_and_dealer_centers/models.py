@@ -108,6 +108,7 @@ class Vehicle(models.Model):
 
 class VehiclePhotos(models.Model):
 	"""Фотографии транспортного средства"""
+
 	title = models.CharField(max_length=255, verbose_name='Заголовок')
 	image = models.ImageField(upload_to="vehicle_photos/%Y/%m/%d/", verbose_name="Фотография")
 	vehicle = models.ForeignKey(
@@ -126,3 +127,30 @@ class VehiclePhotos(models.Model):
 		verbose_name = 'Фотография транспортного средства'
 		verbose_name_plural = 'Фотографии транспортного средства'
 
+
+class DealerCenterReviews(models.Model):
+	"""Отзывы дилерского центра"""
+
+	name = models.CharField(max_length=255, verbose_name="Имя")
+	text = models.TextField(max_length=2500, verbose_name="Текст отзыва")
+	email = models.EmailField(verbose_name="Почта")
+	parent = models.ForeignKey(
+		'self',
+		on_delete=models.SET_NULL,
+		verbose_name="Родитель",
+		blank=True,
+		null=True
+	)
+	dealer_center = models.ForeignKey(
+		DealerCenter,
+		on_delete=models.CASCADE,
+		verbose_name="Дилерский центр",
+		related_name="dealer_center_review"
+	)
+
+	def __str__(self):
+		return f'{self.name}-{self.dealer_center}'
+
+	class Meta:
+		verbose_name = "Отзыв дилерского центра"
+		verbose_name_plural = "Отзывы дилерского центра"

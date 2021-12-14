@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User, Permission
 from django.template.defaultfilters import default_if_none
 from django.utils.safestring import mark_safe
-from .models import Dealer, DealerCenter, Vehicle, VehiclePhotos
+from .models import Dealer, DealerCenter, Vehicle, VehiclePhotos, DealerCenterReviews
 from django.forms import TextInput, Textarea
 from django.db import models
 
@@ -179,6 +179,14 @@ class VehiclePhotosAdmin(admin.ModelAdmin):
             return mark_safe(f'<img src="#"')
 
     get_image.short_description = "Фотография"
+
+
+@admin.register(DealerCenterReviews)
+class DealerCenterReviewsAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'text', 'dealer_center')
+    fields = (
+        ('name', 'email'), 'text', ('dealer_center', 'parent')
+    )
 
 
 admin.site.site_title = 'Дилеры и их дилерские центры'

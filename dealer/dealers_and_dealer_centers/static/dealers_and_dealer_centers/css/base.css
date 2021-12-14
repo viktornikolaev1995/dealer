@@ -43,12 +43,13 @@ display inline
 Ширина и высота элемента определяются по содержимому. Поменять их нельзя.
 Например, инлайновые элементы по умолчанию: <span>, <a>.
 
-display blok
+display block
 Блочные элементы располагаются один над другим, вертикально (если нет особых свойств позиционирования, например float).
 Блок стремится расшириться на всю доступную ширину. Можно указать ширину и высоту явно.
 Это значение display многие элементы имеют по умолчанию: <div>, заголовок <h1>, параграф <p>.
 */
 	display: block;
+	object-fit:cover;
 }
 
 h1,
@@ -202,18 +203,24 @@ nav a:focus {
 .vehicle-images,
 .vehicle,
 .vehicles,
+.dealer,
 .dealer-center {
 	display: flex;
 	flex-direction: column;
 }
 
+.dealer,
 .dealer-center {
     border-style: solid;
     border-width: 0.1rem;
     border-radius: 0.5rem;
     padding: 1rem;
     border-color: #FAF0E6;
+}
 
+.dealer ul {
+    padding: 0;
+    list-style: circle;
 }
 
 .img-main,
@@ -240,10 +247,12 @@ order определяет порядок, используемый для ра�
 }
 
 .vehicle-main,
+.dealer-main,
 .dealer-center-main {
     order: 2;
 }
 
+.dealer-secondary,
 .dealer-center-secondary {
     order: 1;
 }
@@ -335,6 +344,7 @@ pointer: Указатель, обозначающий ссылку, обычно
     }
 
     .vehicles,
+    .dealer,
     .dealer-center {
         flex-direction: row;
         justify-content: space-between;
@@ -342,11 +352,13 @@ pointer: Указатель, обозначающий ссылку, обычно
     }
 
     .vehicle-main,
+    .dealer-main,
     .dealer-center-main {
         width: 48.75%;
     }
 
     .vehicle-secondary,
+    .dealer-secondary,
     .dealer-center-secondary {
         width: 48.75%;
     }

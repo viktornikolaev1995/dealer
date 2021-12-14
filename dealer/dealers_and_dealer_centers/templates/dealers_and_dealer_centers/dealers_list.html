@@ -1,17 +1,18 @@
 {% extends "dealers_and_dealer_centers/base.html" %}
 {% block content %}
     {% for dealer in dealers %}
-    <article class="article-recent">
-        <div class="article-recent-main">
+    <article class="dealer">
+        <div class="dealer-main">
             <h2>{{ dealer.name }}</h2>
-            <p>Дилерские центры:
+            <p>{{ dealer.description }}</p>
+            <ul>Дилерские центры:
                 {% for dealer_center in dealer.car_saloons.all %}
-                {{dealer_center.name}}
+                <li>{{dealer_center.name}}</li>
                 {% endfor %}
-            </p>
+            </ul>
         </div>
-        <div class="article-recent-secondary">
-            <img src="{{dealer.image.url}}" class="article-image">
+        <div class="dealer-secondary">
+            <img src="{{dealer.image.url}}" class="img-main">
         </div>
     </article>
     {% endfor %}
