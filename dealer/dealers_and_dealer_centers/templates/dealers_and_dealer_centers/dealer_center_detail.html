@@ -73,6 +73,7 @@
         {% for review in dealer_center.dealer_center_review.all %}
         <div class="review">
             <span>{{ review.name }}-{{ review.email }}</span>
+            <span>{{ review.pub_date }}</span>
             <p>{{ review.text }}</p>
         </div>
         {% endfor %}

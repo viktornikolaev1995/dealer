@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -134,6 +136,7 @@ class DealerCenterReviews(models.Model):
 	name = models.CharField(max_length=255, verbose_name="Имя")
 	text = models.TextField(max_length=2500, verbose_name="Текст отзыва")
 	email = models.EmailField(verbose_name="Почта")
+	pub_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата написания отзыва')
 	parent = models.ForeignKey(
 		'self',
 		on_delete=models.SET_NULL,
