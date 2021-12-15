@@ -1,0 +1,25 @@
+{% extends "dealers_and_dealer_centers/base.html" %}
+{% block content %}
+{% for vehicle in vehicles %}
+{% url 'vehicle_with_mileage_at_dealer_center' slug=vehicle.dealer_center.slug slug1=vehicle.slug as the_url %}
+<article class="vehicles">
+    <div class="vehicle-main">
+        {% if the_url %}
+            <a href="{{ the_url }}"><h3>{{ vehicle.name }}</h3></a>
+        {% else %}
+            <a href="{{ the_url }}" onclick="return false;"><h3>{{ vehicle.name }}</h3></a>
+        {% endif %}
+        <p>Марка: {{ vehicle.brand }}</p>
+        <p>Модель: {{ vehicle.car_model }}</p>
+        <p>VIN: {{ vehicle.vin|slice:':8'|add:'*********' }}</p>
+        <p>Двигатель: {{ vehicle.engine }}</p>
+        <p>Год: {{ vehicle.year_of_release }}</p>
+        <p>Дилерский центр: {{ vehicle.dealer_center }}</p>
+        <h3>Цена: {{ vehicle.price }} руб</h3>
+    </div>
+    <div class="vehicle-secondary">
+        <img src="{{vehicle.image.url}}" class="img-main">
+    </div>
+</article>
+{% endfor %}
+{% endblock %}

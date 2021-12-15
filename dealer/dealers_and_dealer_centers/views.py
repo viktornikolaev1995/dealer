@@ -36,7 +36,7 @@ class DealerCenterList(ListView):
 
 class VehicleNewList(ListView):
     model = Vehicle
-    template_name = 'dealers_and_dealer_centers/vehicle_list.html'
+    template_name = 'dealers_and_dealer_centers/vehicle_new_list.html'
     context_object_name = 'vehicles'
 
     def get_queryset(self):
@@ -60,7 +60,10 @@ class VehicleNewAtDealerCenterList(VehicleNewList):
         raise Http404
 
 
-class VehicleWithMileageList(VehicleNewList):
+class VehicleWithMileageList(ListView):
+    model = Vehicle
+    template_name = 'dealers_and_dealer_centers/vehicle_with_mileage_list.html'
+    context_object_name = 'vehicles'
 
     def get_queryset(self):
         obj = Vehicle.objects.filter(archive=False, vehicle_with_mileage=True)
@@ -90,9 +93,17 @@ class DealerCenterDetail(DetailView):
     slug_url_kwarg = 'slug'
 
 
+class VehicleNewAtDealerCenterDetail(DetailView):
+    model = Vehicle
+    template_name = 'dealers_and_dealer_centers/vehicle_new_detail.html'
+    context_object_name = 'vehicle'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug1'
+
+
 class VehicleWithMileageAtDealerCenterDetail(DetailView):
     model = Vehicle
-    template_name = 'dealers_and_dealer_centers/vehicle_detail.html'
+    template_name = 'dealers_and_dealer_centers/vehicle_with_mileage_detail.html'
     context_object_name = 'vehicle'
     slug_field = 'slug'
     slug_url_kwarg = 'slug1'

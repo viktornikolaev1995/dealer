@@ -1,7 +1,7 @@
 {% extends "dealers_and_dealer_centers/base.html" %}
 {% block content %}
 {% for vehicle in vehicles %}
-{% url 'vehicle_with_mileage_at_dealer_center' slug=vehicle.dealer_center.slug slug1=vehicle.slug as the_url %}
+{% url 'new_vehicle_at_dealer_center' slug=vehicle.dealer_center.slug slug1=vehicle.slug as the_url %}
 <article class="vehicles">
     <div class="vehicle-main">
         {% if the_url %}
@@ -9,7 +9,6 @@
         {% else %}
             <a href="{{ the_url }}" onclick="return false;"><h3>{{ vehicle.name }}</h3></a>
         {% endif %}
-        <p>Марка: {{ vehicle.dealer_center__slug }}</p>
         <p>Марка: {{ vehicle.brand }}</p>
         <p>Модель: {{ vehicle.car_model }}</p>
         <p>VIN: {{ vehicle.vin|slice:':8'|add:'*********' }}</p>
