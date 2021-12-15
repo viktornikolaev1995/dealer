@@ -5,7 +5,7 @@
         <div class="dealer-main">
             <h3>{{ dealer.name }}</h3>
             <p>{{ dealer.description }}</p>
-            <ul class="dealer-centers"><h3>Дилерские центры:</h3>
+            <ul class="dealer-center"><h3>Дилерские центры:</h3>
                 {% for dealer_center in dealer.car_saloons.all %}
                 <a href="{% url 'dealer_center' dealer_center.slug %}"><li>{{dealer_center.name}}</li></a>
                 {% endfor %}

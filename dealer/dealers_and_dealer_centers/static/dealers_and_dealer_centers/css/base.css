@@ -159,10 +159,14 @@ margin: auto;               верх и низ: отступ 0
 	display: flex;
 	/*расположение блоков по вертикали*/
 	flex-direction: column;
-	/*определяет, как браузер распределяет пространство между и вокруг элементов контента вдоль главной оси flex контейнера, или вдоль строчной оси grid контейнера.*/
-	justify-content: space-between;
-	padding: 0 150px; /*для центрирования элементов изображения и текста <1000px*/
+	/*определяет, как браузер распределяет пространство между и вокруг элементов контента вдоль главной оси flex контейнера,
+	или вдоль строчной оси grid контейнера.*/
+	justify-content: center;
+	/*align-items выравнивает flex-элементы текущей flex-линии таким же образом, как и justify-content,
+	но в перпендикулярном направлении.*/
+	align-items: center;
 	margin-bottom: 150px; /*для отступа от footer'a*/
+	padding: 0;
 }
 
 header {
@@ -213,13 +217,15 @@ nav a:focus {
 .vehicle,
 .vehicles,
 .dealer,
-.dealer-center {
+.dealer-center,
+.dealer-centers {
 	display: flex;
 	flex-direction: column;
 }
 
 .dealer,
-.dealer-center {
+.dealer-center,
+.dealer-centers {
     border-style: solid;
     border-width: 0.1rem;
     border-radius: 0.5rem;
@@ -228,7 +234,7 @@ nav a:focus {
 }
 
 .dealer ul,
-.dealer-center ul {
+.dealer-centers ul {
     list-style: circle;
 }
 
@@ -236,7 +242,7 @@ nav a:focus {
     padding: 0;
 }
 
-.dealer-center ul {
+.dealer-centers ul {
     padding-left: 1rem;
 }
 
@@ -245,6 +251,10 @@ nav a:focus {
 	margin-bottom: 0.5rem;
 }
 
+.img-dealer-centers {
+    width: 100%;
+    height: 40vw;
+}
 
 .vehicle-image-main {
 /*
@@ -265,7 +275,8 @@ order определяет порядок, используемый для ра�
 
 .vehicle-main,
 .dealer-main,
-.dealer-center-main {
+.dealer-center-main,
+.dealer-centers-main {
     order: 2;
 }
 
@@ -277,7 +288,7 @@ li.vehicle-sales {
     margin-top: 0.5rem;
 }
 
-.dealer-main ul.dealer-centers,
+.dealer-main ul.dealer-center,
 .dealer-center-main ul.vehicle-services {
     list-style-type: "\2705";
 }
@@ -286,13 +297,19 @@ li.vehicle-sales {
     margin-top: 0.5rem;
 }
 
-.dealer-center-main li {
+.dealer-centers-main li {
     margin-bottom: 0.5rem;
 }
 
 .dealer-secondary,
-.dealer-center-secondary {
+.dealer-center-secondary,
+.dealer-centers-secondary {
     order: 1;
+}
+
+.dealer-center-reviews {
+    margin-top: 1rem;
+    order: 3;
 }
 
 .form {
@@ -300,36 +317,66 @@ li.vehicle-sales {
 }
 
 .form-title {
-    margin-bottom: .5rem;
-}
-
-.form-content {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .form-content input,
 .form-content textarea {
     width: 100%;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
+    /*margin-bottom: .5rem;*/
 }
 
 .form-content textarea {
     resize: none;
 }
 
-.form-content {
+/*.form-content {
     border: 1px solid gold;
-}
+}*/
 
 .form-bttn {
+    margin:0;
     border: none;
     border-radius: 0.25rem;
     width: 100%;
-    height: 25px;
+    height: 30px;
     background-color: #2E8B57;
     color: #ffffff;
+    /*font-family: 'Lora', serif;*/
+}
+
+.vehicle-main,
+.dealer-main,
+.dealer-centers-main,
+.vehicle-secondary,
+.dealer-secondary,
+.dealer-centers-secondary {
+     border: 1px solid gold;
+}
+
+.review {
+    background-color: #fffff0;
+    margin-bottom: 0.5rem;
+    border: 1px solid gold;
+    padding: 0.25rem 0;
     font-family: 'Lora', serif;
 }
+
+.review-title {
+    margin-bottom: 1rem;
+}
+
+.review span {
+    display: block;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.review p {
+   margin: 0;
+}
+
 
 @media (max-width: 737px) {
 	nav ul {
@@ -342,7 +389,6 @@ li.vehicle-sales {
 }
 
 @media (max-width: 675px) {
-
 	.container-flex {
 		padding: 0;
 	}
@@ -407,6 +453,21 @@ pointer: Указатель, обозначающий ссылку, обычно
     	opacity: 1;
     }
 
+    .img-dealer-center,
+    .img-dealer-centers {
+        width: 100%;
+        margin: 0.5rem 0;
+        object-fit:cover;
+    }
+
+    .img-dealer-center {
+        height: 20vw;
+    }
+
+    .img-dealer-centers {
+        height: 100%;
+    }
+
     .vehicle {
     	flex-direction: row;
     	justify-content: left;
@@ -419,7 +480,7 @@ pointer: Указатель, обозначающий ссылку, обычно
 
     .vehicles,
     .dealer,
-    .dealer-center {
+    .dealer-centers {
         flex-direction: row;
         justify-content: space-between;
         margin-bottom: 2rem;
@@ -427,13 +488,13 @@ pointer: Указатель, обозначающий ссылку, обычно
 
     .vehicle-main,
     .dealer-main,
-    .dealer-center-main {
+    .dealer-centers-main {
         width: 48.75%;
     }
 
     .vehicle-secondary,
     .dealer-secondary,
-    .dealer-center-secondary {
+    .dealer-centers-secondary {
         width: 48.75%;
     }
 

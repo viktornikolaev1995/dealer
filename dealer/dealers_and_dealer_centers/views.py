@@ -85,6 +85,7 @@ class VehicleWithMileageAtDealerCenterList(VehicleWithMileageList):
             return obj
         raise Http404
 
+
 class DealerCenterDetail(DetailView):
     model = DealerCenter
     template_name = 'dealers_and_dealer_centers/dealer_center_detail.html'

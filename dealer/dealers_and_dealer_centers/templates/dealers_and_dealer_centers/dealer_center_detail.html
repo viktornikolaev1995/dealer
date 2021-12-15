@@ -52,10 +52,10 @@
                 <input type="text" name="name" placeholder="Имя *" required="">
             </div>
             <div class="form-content">
-                <textarea name="text" rows="5" placeholder="Текст *" required=""></textarea>
+                <input type="email" name="email" placeholder="Email *" required="">
             </div>
             <div class="form-content">
-                <input type="email" name="email" placeholder="Email *" required="">
+                <textarea name="text" rows="6" placeholder="Текст *" required=""></textarea>
             </div>
             <button type="submit" class="form-bttn">Отправить</button>
             </div>
@@ -63,10 +63,49 @@
     </div>
     <div class="dealer-center-secondary">
         {% if dealer_center.image %}
-        <img src="{{ dealer_center.image.url }}" class="article-image">
+        <img src="{{ dealer_center.image.url }}" class="img-dealer-center">
         {% else %}
-        <img src="#" class="img-main">
+        <img src="#" class="img-dealer-center">
         {% endif %}
+    </div>
+    <div class="dealer-center-reviews">
+        <h3 class="review-title">Лента отзывов</h3>
+        {% for review in dealer_center.dealer_center_review.all %}
+        <div class="review">
+            <span>{{ review.name }}-{{ review.email }}</span>
+            <p>{{ review.text }}</p>
+        </div>
+        {% endfor %}
     </div>
 </article>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

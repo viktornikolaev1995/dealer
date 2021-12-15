@@ -3,8 +3,8 @@
 {% for dealer_center in dealer_centers %}
 {% url 'new_vehicles_at_dealer_center' dealer_center.slug as new_vehicles_at_dealer_center_url %}
 {% url 'vehicles_with_mileage_at_dealer_center' dealer_center.slug as vehicles_with_mileage_at_dealer_center_url %}
-<article class="dealer-center">
-    <div class="dealer-center-main">
+<article class="dealer-centers">
+    <div class="dealer-centers-main">
         <a href="{% url 'dealer_center' dealer_center.slug %}"><h3>{{ dealer_center.name }}</h3></a>
         {% for dealer in dealer_center.dealer_centers.all %}
             <h4>Дилер: {{ dealer.name }}</h4>
@@ -12,11 +12,11 @@
         <p>Адрес: {{ dealer_center.address }}</p>
         <p>Номер: {{ dealer_center.telephone_number }}</p>
     </div>
-    <div class="dealer-center-secondary">
+    <div class="dealer-centers-secondary">
         {% if dealer_center.image %}
-        <img src="{{ dealer_center.image.url }}" class="article-image">
+        <img src="{{ dealer_center.image.url }}" class="img-dealer-centers">
         {% else %}
-        <img src="#" class="img-main">
+        <img src="#" class="img-dealer-centers">
         {% endif %}
     </div>
 </article>
