@@ -2,6 +2,7 @@ import datetime
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 
 class Dealer(models.Model):
@@ -55,6 +56,12 @@ class DealerCenter(models.Model):
 	class Meta:
 		verbose_name = 'Дилерский центр'
 		verbose_name_plural = 'Дилерские центры'
+
+	def get_review(self):
+		return self.dealer_center_review.filter(parent__isnull=True)
+
+	def get_absolute_url(self):
+		return reverse('dealer_center', kwargs={'slug': self.slug})
 
 	def __str__(self):
 		return self.name
@@ -150,6 +157,9 @@ class DealerCenterReviews(models.Model):
 		verbose_name="Дилерский центр",
 		related_name="dealer_center_review"
 	)
+
+	def get_all_children(self):
+		return DealerCenterReviews.objects.filter(parent_id=self.id).order_by("id")
 
 	def __str__(self):
 		return f'{self.name}-{self.dealer_center}'

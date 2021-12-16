@@ -54,10 +54,10 @@
                 <input type="text" name="name" placeholder="Имя *" id="contactname" required="">
             </div>
             <div class="form-content">
-                <input type="email" name="email" placeholder="Email *" required="">
+                <input type="email" name="email" placeholder="Email *" id="contactemail" required="">
             </div>
             <div class="form-content">
-                <textarea name="text" rows="6" placeholder="Текст *" required=""></textarea>
+                <textarea name="text" rows="6" placeholder="Текст *" id="contactreview" required=""></textarea>
             </div>
             <button type="submit" class="form-bttn">Отправить</button>
             </div>
@@ -71,21 +71,28 @@
         {% endif %}
     </div>
     <div class="dealer-center-reviews">
-        <h3 class="review-title">Лента отзывов</h3>
-        {% for review in dealer_center.dealer_center_review.all %}
+        <h3 class="review-title">Лента отзывов</h3><sup>{{ dealer_center.get_review.count }}</sup>
+        {% for review in dealer_center.get_review %}
         <div class="review">
             <span>{{ review.name }}-{{ review.email }}</span>
             <span>{{ review.pub_date }}</span>
             <p>{{ review.text }}</p>
-            <a href="#formReview" class="review-link" onclick="addReview( '{{ review.name }}' '{{ review.id }}' )">Ответить</a>
+            <a href="#formReview" class="review-link" onclick="addReview( '{{ review.name }}', '{{ review.id }}' )">Ответить</a>
         </div>
+            {% for rev in review.get_all_children %}
+                <div class="child-review">
+                <span>{{ rev.name }}-{{ rev.email }}</span>
+                <span>{{ rev.pub_date }}</span>
+                <p>{{ rev.text }}</p>
+                </div>
+            {% endfor %}
         {% endfor %}
     </div>
 </article>
 <script>
     function addReview(name, id) {
-        document.GetElementById("contactname").innerText = `${name}, `;
-        document.GetElementById("contactparent").value = id
+        document.getElementById("contactreview").innerText = `${name}, `;
+        document.getElementById("contactparent").value = id
     }
 
 </script>

@@ -115,11 +115,13 @@ class AddDealerCenterReview(View):
 
     def post(self, request, pk):
         form = DealerCenterReviewForm(request.POST)
+        dealer_center = DealerCenter.objects.get(id=pk)
         if form.is_valid():
             form = form.save(commit=False)
+            if request.POST.get("parent", None):
+                form.parent_id = int(request.POST.get("parent"))
             form.dealer_center_id = pk
             form.save()
-
-        return redirect("/")
+        return redirect(dealer_center.get_absolute_url())
 
 
