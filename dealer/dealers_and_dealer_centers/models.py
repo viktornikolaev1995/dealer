@@ -146,7 +146,7 @@ class DealerCenterReviews(models.Model):
 	pub_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата написания отзыва')
 	parent = models.ForeignKey(
 		'self',
-		on_delete=models.SET_NULL,
+		on_delete=models.CASCADE,
 		verbose_name="Родитель",
 		blank=True,
 		null=True
