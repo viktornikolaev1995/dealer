@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Dealer, DealerCenter, Vehicle
+from ..models import Dealer, DealerCenter, Vehicle, VehiclePhotos, DealerCenterReviews
 
 
 class DealerSerializer(serializers.ModelSerializer):
@@ -15,9 +15,10 @@ class DealerCenterSerializer(serializers.ModelSerializer):
         model = DealerCenter
         fields = '__all__'
 
+
 class VehicleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Vehicle
-        fields = '__all__'
+        exclude = ("description", "vehicle_with_mileage", "add_to_dealer", "add_to_dealer_center", "archive")
 
