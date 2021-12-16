@@ -312,8 +312,9 @@ li.vehicle-sales {
     order: 3;
 }
 
-.form {
-    width: 450px;
+.form,
+.dealer-center-reviews {
+    width: 420px;
 }
 
 .form-title {
@@ -339,7 +340,7 @@ li.vehicle-sales {
     border: none;
     border-radius: 0.25rem;
     width: 100%;
-    height: 30px;
+    height: 35px;
     background-color: #2E8B57;
     color: #ffffff;
     font-family: 'Lora', serif;
@@ -355,11 +356,10 @@ li.vehicle-sales {
 }
 
 .review {
-    background-color: #fffff0;
-    border-radius: 0.25rem;
+    background-color: #f8f8f8;
+    border-radius: 0.5rem;
     margin-bottom: 0.5rem;
     border: 1px solid gold;
-    padding: 0.25rem 0;
     font-family: 'Lora', serif;
 }
 
@@ -373,10 +373,11 @@ li.vehicle-sales {
 }
 
 .review p {
-   margin-top: 1rem;
-   margin-bottom: 0;
+    margin: 0.5rem 0;
 }
 
+.review-link {
+}
 
 @media (max-width: 737px) {
 	nav ul {

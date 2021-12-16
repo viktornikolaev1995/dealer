@@ -4,8 +4,8 @@
 {% url 'vehicles_with_mileage_at_dealer_center' dealer_center.slug as vehicles_with_mileage_at_dealer_center_url %}
 <article class="dealer-center">
     <div class="dealer-center-main">
-        <h2>{{ dealer_center.name }}</h2>
-        <h3>Услуги:</h3>
+        <h3>{{ dealer_center.name }}</h3>
+        <h4>Услуги:</h4>
         <ul class="vehicle-services">
             {% if dealer_center.vehicle_sale %}
             <li>Продажа транспортных средств:
@@ -44,12 +44,14 @@
         </p>
         <p>Адрес: {{ dealer_center.address }}</p>
         <p>Номер: {{ dealer_center.telephone_number }}</p>
-        <h3 class="form-title">Оставить отзыв</h3>
-        <form action="{% url 'add_review' dealer_center.id %}" method="post">
+        <hr>
+        <form action="{% url 'add_review' dealer_center.id %}" method="post" id="formReview">
+            <h3 class="form-title">Оставить отзыв</h3>
             {% csrf_token %}
             <div class="form">
+            <input type="hidden" name="parent" id="contactparent">
             <div class="form-content">
-                <input type="text" name="name" placeholder="Имя *" required="">
+                <input type="text" name="name" placeholder="Имя *" id="contactname" required="">
             </div>
             <div class="form-content">
                 <input type="email" name="email" placeholder="Email *" required="">
@@ -75,10 +77,18 @@
             <span>{{ review.name }}-{{ review.email }}</span>
             <span>{{ review.pub_date }}</span>
             <p>{{ review.text }}</p>
+            <a href="#formReview" class="review-link" onclick="addReview( '{{ review.name }}' '{{ review.id }}' )">Ответить</a>
         </div>
         {% endfor %}
     </div>
 </article>
+<script>
+    function addReview(name, id) {
+        document.GetElementById("contactname").innerText = `${name}, `;
+        document.GetElementById("contactparent").value = id
+    }
+
+</script>
 {% endblock %}
 
 
