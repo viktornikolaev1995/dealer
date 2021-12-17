@@ -28,12 +28,31 @@ class DealerCenterCreateReviewSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class FilterDealerCenterReviewsSerializer(serializers.ListSerializer):
+    """Фильтр отзывов дилерского центра (только parents)"""
+
+    def to_representation(self, data):
+        data = data.filter(parent=None)
+        return super().to_representation(data)
+
+
+class RecursiveSerializer(serializers.Serializer):
+    """Вывод рекурсивно children"""
+
+    def to_representation(self, value):
+        serializer = self.parent.parent.__class__(value, context=self.context)
+        return serializer.data
+
+
 class DealerCenterReviewsSerializer(serializers.ModelSerializer):
     """Список отзывов дилерского центра"""
 
+    children = RecursiveSerializer(many=True)
+
     class Meta:
+        list_serializer_class = FilterDealerCenterReviewsSerializer
         model = DealerCenterReviews
-        fields = ("name", "email", "text")
+        fields = ("id", "name", "email", "text", "children")
 
 
 class DealerCenterDetailSerializer(serializers.ModelSerializer):

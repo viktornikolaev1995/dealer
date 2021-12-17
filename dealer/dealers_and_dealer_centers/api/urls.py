@@ -27,5 +27,5 @@ urlpatterns = [
          VehicleWithMileageAtDealerCenterListAPIView.as_view(), name='vehicles_with_mileage_at_dealer_center_api'),
     path('vehicles_with_mileage_at_dealer_center/<slug:slug>/<slug:slug1>/',
          VehicleWithMileageAtDealerCenterDetailAPIView.as_view(), name='vehicle_with_mileage_at_dealer_center_api'),
-    re_path(r'^create_review/(\d+)/$', DealerCenterCreateReview.as_view(), name='create_review_api')
+    re_path(r'^create_review/$', DealerCenterCreateReview.as_view(), name='create_review_api')
 ]

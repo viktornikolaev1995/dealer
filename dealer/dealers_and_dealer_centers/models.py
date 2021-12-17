@@ -148,6 +148,7 @@ class DealerCenterReviews(models.Model):
 		'self',
 		on_delete=models.CASCADE,
 		verbose_name="Родитель",
+		related_name="children",
 		blank=True,
 		null=True
 	)

@@ -99,7 +99,7 @@ class VehicleWithMileageAtDealerCenterDetailAPIView(APIView):
 class DealerCenterCreateReview(APIView):
     """Создание отзыва дилерского центра"""
 
-    def post(self, request, pk):
+    def post(self, request):
         review = DealerCenterCreateReviewSerializer(data=request.data)
         if review.is_valid():
             review.save()
