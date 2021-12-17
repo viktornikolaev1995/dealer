@@ -45,7 +45,7 @@
         <p>Адрес: {{ dealer_center.address }}</p>
         <p>Номер: {{ dealer_center.telephone_number }}</p>
         <hr>
-        <form action="{% url 'add_review' dealer_center.id %}" method="post" id="formReview">
+        <form action="{% url 'create_review' dealer_center.id %}" method="post" id="formReview">
             <h3 class="form-title">Оставить отзыв</h3>
             {% csrf_token %}
             <div class="form">

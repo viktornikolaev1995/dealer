@@ -1,61 +1,107 @@
 from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import DealerSerializer, DealerCenterSerializer, VehicleSerializer
+from .serializers import (
+    DealerListSerializer,
+    DealerCenterListSerializer,
+    DealerCenterCreateReviewSerializer,
+    DealerCenterDetailSerializer,
+    VehicleNewListSerializer,
+    VehicleNewDetailSerializer,
+    VehicleWithMileageListSerializer,
+    VehicleWithMileageDetailSerializer
+)
+
 from ..models import Dealer, DealerCenter, Vehicle
 
 
+class DealerListAPIView(APIView):
+    """Список дилеров"""
+
+    def get(self, request):
+        dealer = Dealer.objects.all()
+        serializer = DealerListSerializer(dealer, many=True)
+        return Response(serializer.data)
 
 
-class VehicleNewAPIList(APIView):
-    """Вывод автомобилей нового модельного ряда, принадлежащих всем дилерским центрам"""
+class DealerCenterListAPIView(APIView):
+    """Список дилерских центров"""
+
+    def get(self, request):
+        dealer_center = DealerCenter.objects.all()
+        serializer = DealerCenterListSerializer(dealer_center, many=True)
+        return Response(serializer.data)
+
+
+class DealerCenterDetailAPIView(APIView):
+    """Вывод дилерского центра"""
+
+    def get(self, request, slug):
+        dealer_center = DealerCenter.objects.get(slug=slug)
+        serializer = DealerCenterDetailSerializer(dealer_center)
+        return Response(serializer.data)
+
+
+class VehicleNewListAPIView(APIView):
+    """Список автомобилей нового модельного ряда, принадлежащих всем дилерским центрам"""
 
     def get(self, request):
         vehicle = Vehicle.objects.filter(archive=False, vehicle_with_mileage=False)
-        serializer = VehicleSerializer(vehicle, many=True)
+        serializer = VehicleNewListSerializer(vehicle, many=True)
         return Response(serializer.data)
 
 
-class VehicleNewAtDealerCenterAPIList(APIView):
-    """Вывод автомобилей нового модельного ряда, принадлежащих конкретному дилерскому центру"""
+class VehicleNewAtDealerCenterListAPIView(APIView):
+    """Список автомобилей нового модельного ряда, принадлежащих конкретному дилерскому центру"""
 
-    def get(self, request, pk):
-        vehicle = Vehicle.objects.filter(archive=False, vehicle_with_mileage=False, dealer_center_id=pk)
-        serializer = VehicleSerializer(vehicle, many=True)
+    def get(self, request, slug):
+        vehicle = Vehicle.objects.filter(archive=False, vehicle_with_mileage=False, dealer_center__slug=slug)
+        serializer = VehicleNewListSerializer(vehicle, many=True)
         return Response(serializer.data)
 
 
-class VehicleNewAtDealerCenterAPIDetail(APIView):
-    """Вывод автомобиля с пробегом"""
+class VehicleNewAtDealerCenterDetailAPIView(APIView):
+    """Вывод автомобиля нового модельного ряда"""
 
-    def get(self, request, pk):
-        vehicle = self.objects.get(archive=False, vehicle_with_mileage=False, id=pk)
-        serializer = VehicleSerializer(vehicle)
+    def get(self, request, slug, slug1):
+        vehicle = Vehicle.objects.get(archive=False, vehicle_with_mileage=False, dealer_center__slug=slug, slug=slug1)
+        serializer = VehicleNewDetailSerializer(vehicle)
         return Response(serializer.data)
 
 
-class VehicleWithMileageAPIList(APIView):
-    """Вывод автомобилей с пробегом, принадлежащих всем дилерским центрам"""
+class VehicleWithMileageListAPIView(APIView):
+    """Список автомобилей с пробегом, принадлежащих всем дилерским центрам"""
 
     def get(self, request):
         vehicle = Vehicle.objects.filter(archive=False, vehicle_with_mileage=True)
-        serializer = VehicleSerializer(vehicle, many=True)
+        serializer = VehicleWithMileageListSerializer(vehicle, many=True)
         return Response(serializer.data)
 
 
-class VehicleWithMileageAtDealerCenterAPIList(APIView):
-    """Вывод автомобилей с пробегом, принадлежащих конкретному дилерскому центру"""
+class VehicleWithMileageAtDealerCenterListAPIView(APIView):
+    """Список автомобилей с пробегом, принадлежащих конкретному дилерскому центру"""
 
-    def get(self, request, pk):
-        vehicle = Vehicle.objects.filter(archive=False, vehicle_with_mileage=True, dealer_center_id=pk)
-        serializer = VehicleSerializer(vehicle, many=True)
+    def get(self, request, slug):
+        vehicle = Vehicle.objects.filter(archive=False, vehicle_with_mileage=True, dealer_center__slug=slug)
+        serializer = VehicleWithMileageListSerializer(vehicle, many=True)
         return Response(serializer.data)
 
 
-class VehicleWithMileageAtDealerCenterAPIDetail(APIView):
+class VehicleWithMileageAtDealerCenterDetailAPIView(APIView):
     """Вывод автомобиля с пробегом"""
 
-    def get(self, request, pk):
-        vehicle = self.objects.get(archive=False, vehicle_with_mileage=True, id=pk)
-        serializer = VehicleSerializer(vehicle)
+    def get(self, request, slug, slug1):
+        vehicle = Vehicle.objects.get(archive=False, vehicle_with_mileage=True, dealer_center__slug=slug, slug=slug1)
+        serializer = VehicleWithMileageDetailSerializer(vehicle)
         return Response(serializer.data)
+
+
+class DealerCenterCreateReview(APIView):
+    """Создание отзыва дилерского центра"""
+
+    def post(self, request, pk):
+        review = DealerCenterCreateReviewSerializer(data=request.data)
+        if review.is_valid():
+            review.save()
+        return Response(status=201)
+
