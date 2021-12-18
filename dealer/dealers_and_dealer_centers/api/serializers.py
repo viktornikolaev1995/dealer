@@ -87,11 +87,20 @@ class VehicleWithMileageListSerializer(serializers.ModelSerializer):
         exclude = ("description", "vehicle_with_mileage", "add_to_dealer", "add_to_dealer_center", "archive")
 
 
+class VehiclePhotosSerializer(serializers.ModelSerializer):
+    """Фотографии автомобиля"""
+
+    class Meta:
+        model = VehiclePhotos
+        fields = ("image",)
+
+
 class VehicleNewDetailSerializer(serializers.ModelSerializer):
     """Автомобиль нового модельного ряда"""
 
     dealer = serializers.SlugRelatedField(slug_field="slug", read_only=True)
     dealer_center = serializers.SlugRelatedField(slug_field="slug", read_only=True)
+    vehicle_images = VehiclePhotosSerializer(many=True)
 
     class Meta:
         model = Vehicle
@@ -103,7 +112,12 @@ class VehicleWithMileageDetailSerializer(serializers.ModelSerializer):
 
     dealer = serializers.SlugRelatedField(slug_field="slug", read_only=True)
     dealer_center = serializers.SlugRelatedField(slug_field="slug", read_only=True)
+    vehicle_images = VehiclePhotosSerializer(many=True)
 
     class Meta:
         model = Vehicle
         exclude = ("description", "vehicle_with_mileage", "add_to_dealer", "add_to_dealer_center", "archive")
+
+
+
+
