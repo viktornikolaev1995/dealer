@@ -15,7 +15,7 @@ from .serializers import (
 from ..models import Dealer, DealerCenter, Vehicle
 
 
-class DealerListAPIView(APIView):
+class DealerList(APIView):
     """Список дилеров"""
 
     def get(self, request):
@@ -24,7 +24,7 @@ class DealerListAPIView(APIView):
         return Response(serializer.data)
 
 
-class DealerCenterListAPIView(APIView):
+class DealerCenterList(APIView):
     """Список дилерских центров"""
 
     def get(self, request):
@@ -33,7 +33,7 @@ class DealerCenterListAPIView(APIView):
         return Response(serializer.data)
 
 
-class DealerCenterDetailAPIView(APIView):
+class DealerCenterDetail(APIView):
     """Вывод дилерского центра"""
 
     def get(self, request, slug):
@@ -42,7 +42,7 @@ class DealerCenterDetailAPIView(APIView):
         return Response(serializer.data)
 
 
-class VehicleNewListAPIView(APIView):
+class VehicleNewList(APIView):
     """Список автомобилей нового модельного ряда, принадлежащих всем дилерским центрам"""
 
     def get(self, request):
@@ -51,7 +51,7 @@ class VehicleNewListAPIView(APIView):
         return Response(serializer.data)
 
 
-class VehicleNewAtDealerCenterListAPIView(APIView):
+class VehicleNewAtDealerCenterList(APIView):
     """Список автомобилей нового модельного ряда, принадлежащих конкретному дилерскому центру"""
 
     def get(self, request, slug):
@@ -60,7 +60,7 @@ class VehicleNewAtDealerCenterListAPIView(APIView):
         return Response(serializer.data)
 
 
-class VehicleNewAtDealerCenterDetailAPIView(APIView):
+class VehicleNewAtDealerCenterDetail(APIView):
     """Вывод автомобиля нового модельного ряда"""
 
     def get(self, request, slug, slug1):
@@ -69,7 +69,7 @@ class VehicleNewAtDealerCenterDetailAPIView(APIView):
         return Response(serializer.data)
 
 
-class VehicleWithMileageListAPIView(APIView):
+class VehicleWithMileageList(APIView):
     """Список автомобилей с пробегом, принадлежащих всем дилерским центрам"""
 
     def get(self, request):
@@ -78,7 +78,7 @@ class VehicleWithMileageListAPIView(APIView):
         return Response(serializer.data)
 
 
-class VehicleWithMileageAtDealerCenterListAPIView(APIView):
+class VehicleWithMileageAtDealerCenterList(APIView):
     """Список автомобилей с пробегом, принадлежащих конкретному дилерскому центру"""
 
     def get(self, request, slug):
@@ -87,7 +87,7 @@ class VehicleWithMileageAtDealerCenterListAPIView(APIView):
         return Response(serializer.data)
 
 
-class VehicleWithMileageAtDealerCenterDetailAPIView(APIView):
+class VehicleWithMileageAtDealerCenterDetail(APIView):
     """Вывод автомобиля с пробегом"""
 
     def get(self, request, slug, slug1):
