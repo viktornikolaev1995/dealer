@@ -1,6 +1,5 @@
 {% extends "dealers_and_dealer_centers/dealers_list.html" %}
 {% block content %}
-<h3>{{ vehicle.name }}</h3>
 <article class="vehicle-images">
     <div class="vehicle-images-additional-1">
         {% for vehicle_photo in vehicle.vehicle_images.all|slice:':3' %}
@@ -21,7 +20,7 @@
 <article class="vehicle">
     <div class="vehicle-description">
         <p>Марка: {{ vehicle.brand }}</p>
-        <p>Модель: {{ vehicle.model }}</p>
+        <p>Модель: {{ vehicle.car_model }}</p>
         <p>Двигатель: {{ vehicle.engine }}</p>
         <p>VIN: {{ vehicle.vin|slice:':8'|add:'*********' }}</p>
         <p>Трансмиссия: {{ vehicle.transmission }}</p>
@@ -29,10 +28,10 @@
     </div>
     <div class="vehicle-description">
         <p>Год: {{ vehicle.year_of_release }}</p>
-        <p>Пробег: {{ vehicle.vehicle_mileage }}</p>
+        <p>Пробег: {{ vehicle.vehicle_mileage }} км</p>
         <p>ПТС: {{ vehicle.type_of_vehicle_passport }}</p>
         <p>Владельцев: {{ vehicle.owners }}</p>
-        <h3>Цена {{ vehicle.price }} руб</h3>
+        <h3>Цена {{ vehicle.price }} &#8381</h3>
     </div>
 </article>
 <article class="vehicle-at-dealer-center">
