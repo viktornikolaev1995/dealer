@@ -12,7 +12,10 @@ class DealerList(ListView):
     context_object_name = 'dealers'
 
     def get_queryset(self):
-        return Dealer.objects.all()
+        obj = Dealer.objects.all()
+        if obj.exists():
+            return obj
+        raise Http404
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -26,7 +29,10 @@ class DealerCenterList(ListView):
     context_object_name = 'dealer_centers'
 
     def get_queryset(self):
-        return DealerCenter.objects.all()
+        obj = DealerCenter.objects.all()
+        if obj.exists():
+            return obj
+        raise Http404
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -25,7 +25,7 @@ urlpatterns = [
     re_path(r'^vehicles_with_mileage/$', VehicleWithMileageList.as_view(), name='vehicles_with_mileage'),
     re_path(r'^vehicles_with_mileage_at_dealer_center/(?P<slug>[\D-]+)/$',
             VehicleWithMileageAtDealerCenterList.as_view(), name='vehicles_with_mileage_at_dealer_center'),
-    re_path(r'^vehicles_with_mileage/(?P<slug>[\D-]+)/(?P<slug1>[\D-]+\d{4}-\d{3,6}(-\d*)?)/$',
+    re_path(r'^vehicle_with_mileage_at_dealer_center/(?P<slug>[\D-]+)/(?P<slug1>[\D-]+\d{4}-\d{3,6}(-\d*)?)/$',
             VehicleWithMileageAtDealerCenterDetail.as_view(), name='vehicle_with_mileage_at_dealer_center'),
     re_path(r'^create_review/(\d+)/$', AddDealerCenterReview.as_view(), name='create_review')
 

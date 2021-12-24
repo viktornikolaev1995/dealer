@@ -12,7 +12,11 @@
             </ul>
         </div>
         <div class="dealer-secondary">
+            {% if dealer.image %}
             <img src="{{dealer.image.url}}" class="article-image">
+            {% else %}
+            <img src="#" class="article-image">
+            {% endif %}
         </div>
     </article>
     {% endfor %}
