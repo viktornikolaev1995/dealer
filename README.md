@@ -1,8 +1,6 @@
 # Honest Dealer
-___
 Сайт о дилерах и дилерских центрах
 ## Описание
-___
 + Просмотр всех дилеров, доступных на сайте
   ![dealers](https://github.com/viktornikolaev1995/dealer/blob/test/images_for_README/dealers_list.png "dealers")
 + Просмотр всех дилерских центров и закрепленных за ними услугами
@@ -21,7 +19,6 @@ ___
   ![vehicle_with_mileage](https://github.com/viktornikolaev1995/dealer/blob/test/images_for_README/vehicle_detail.png "vehicle_with_mileage") 
 
 ## Инструкция по развертыванию проекта
-___
 1. Скачать проект или клонировать с помощью git (`git clone https://github.com/viktornikolaev1995/dealer.git`)
 2. Перейти в каталог с проектом и создать виртуальное окружение (`python3 -m venv venv`)
 3. Запустить виртуальное окружение (`source venv/bin/activate`) на Mac/Linux (`source venv/Scripts/activate`) на Windows
