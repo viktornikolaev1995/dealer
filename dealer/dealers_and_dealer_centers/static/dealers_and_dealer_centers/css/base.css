@@ -353,7 +353,7 @@ li.vehicle-sales {
 .vehicle-secondary,
 .dealer-secondary,
 .dealer-centers-secondary {
-     border: 1px solid gold;
+     /*border: 1px solid gold;*/
 }
 
 .review,
